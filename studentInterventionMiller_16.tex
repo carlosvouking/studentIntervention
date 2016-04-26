@@ -1,0 +1,190 @@
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{etoolbox}
+\usepackage{changepage}
+\usepackage{titlesec}
+\usepackage[parfill]{parskip}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage[numbers,super]{natbib}
+\usepackage{enumitem} %get rid of spaces in listened
+
+% For the images and graphics
+\usepackage{subfig} % For subfigures in floats
+\usepackage[section]{placeins}
+\makeatletter
+ \@ifpackageloaded{tex4ht}{%
+\usepackage[dvips]{color,graphicx}
+    \usepackage[tex4ht]{hyperref}
+    }{%
+      \usepackage[pdftex]{graphicx}
+      \usepackage{hyperref}
+          }
+\makeatother
+\graphicspath{ {/Users/omojumiller/mycode/MachineLearningNanoDegree/Machine-Learning-Project/studentIntervention/images/} } %Path to images
+
+
+% For cutesy tables
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs} % To draw thick lines in table.
+\usepackage{tablefootnote} % To allow footnotes in table.
+\newcommand{\nextitem}{\par\hspace {\labelsep} \textendash \hspace {\labelsep}} % For list inside table cell
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%  TITLE SECTION
+%----------------------------------------------------------------------------------------
+\title{\large \textbf{Building a Student Intervention System: An Udacity Nanodegree ML Project}} % using \large makes the title approximately 14 pt.
+% Author info isn't included for the Annual Conference but some regional conferences might request it.
+\author{Omoju Miller}
+%\author{\normalsize Author Name\\
+%\normalsize email@example.com\\
+%\normalsize Name of Your Department\\\
+%\normalsize Your Institution Name}
+\date{\today} % This leaves the date blank.
+
+\makeatletter % This gets the margins for the title set.
+\patchcmd{\@maketitle}{\begin{center}}{\begin{adjustwidth}{0.5in}{0.5in}\begin{center}}{}{}
+\patchcmd{\@maketitle}{\end{center}}{\end{center}\end{adjustwidth}}{}{}
+\makeatother
+
+\begin{document}
+\raggedright
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+
+%----------------------------------------------------------------------------------------
+%  PAPER CONTENTS
+%----------------------------------------------------------------------------------------
+\section*{Introduction}
+
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Survey Finding with Statistical Significance [Data Disaggregated]} %title of the table
+\centering % centering table
+\begin{tabular}{|l|l|p{2cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{1.5cm}|p{2cm}|} % creating eight columns
+\multicolumn{6}{c}%
+      {Survey Finding with Statistical Significance [Data Disaggregated]
+      (\textit{continued})}\\[5pt]
+\hline\hline %inserting double-line
+\multicolumn{2}{ |c| }{Groups} & Survey Instrument & Sample Group & P Value & Significance by Stars & P Value & Significance by Stars\\[1ex] 
+\cline{5-8} 
+& & & &  \multicolumn{2}{c}{\textbf{Prior CS}} & \multicolumn{2}{c|}{\textbf{NO Prior CS}}\\[0.5ex]
+\hline % inserts single-line
+
+CS10 & CS61A & atcs\_1  
+& Class  & 0.02506  & * & & \\ \hline
+
+CS10 & CS61A & atcs\_2 
+&  Class  & 0.00448  & ** & & \\
+& & &   Male  & 0.00883  & ** & & \\ \hline
+
+CS10 & CS61A & atcs\_3 
+& Class   &   0.01555   &   **    &   & \\
+& & & Class   &   &   &   0.00895   & ** \\
+& & & Female  &   &   &   0.00030   & *** \\ 
+& & & Male    &   0.02903   & *   &   & \\ \hline
+
+CS10 & CS61A & atcs\_4 
+& Class   & 0.04441   & * & & \\
+& & & Class  & & & 0.00341   & ** \\
+& & & Male   & & & 0.00573   & ** \\ \hline
+
+CS10 & CS61A & atcs\_6 
+& Class  & 0.00638   & ** & & \\
+& & & Male   & 0.00852   & ** & & \\ \hline
+
+CS10 & CS61A & atcs\_7 
+& Class  & 0.00064   & *** & & \\
+& & & Male   & 0.02253   & * & & \\ \hline
+
+CS10 & CS61A & atcs\_9
+& Class  & 0.01197   & ** & & \\ \hline
+
+CS10 & CS61A & atcsgender\_1
+& Female  & & & 0.00214   & ** \\ \hline
+
+CS10 & CS61A & atcsgender\_2 
+& Class  & 0.01138   & ** & & \\ \hline
+
+CS10 & CS61A & atct\_2
+& Female & 0.02310   & *& & \\ \hline
+
+CS10 & CS61A & atct\_3 
+& Class   & & & 0.00911    & ** \\
+& & & Female  & & & 0.00258    & ** \\ \hline
+
+CS10 & CS61A & atct\_5
+& Class & 0.00000   & **** & &  \\
+& & & Class   & & & 0.00627 & ** \\
+& & & Female   & 0.00024   & *** & & \\
+& & & Male     & 0.00001   & **** & & \\ \hline
+
+CS10 & CS61A & atct\_6
+& Class  & 0.02987   & * & & \\ \hline
+
+\end{tabular}
+\label{surveyDisAggregated}
+\end{table}
+
+
+%-------------------N O  P R I O R  C S  &  G E N D E R ---------------------%
+
+\begin{figure}[!htbp]
+  \centering
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_CS61aVersusCS10_CS.png}
+    \label{fig:blg_4_CS}}
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_CS61aVersusCS10_NO_CS.png}
+    \label{fig:blg_4_NO_CS}}
+    \qquad
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_male_CS.png}
+    \label{fig:blg_4_male_CS}}
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_male_NO_CS.png}
+    \label{fig:blg_4_male_NO_CS}}
+    \qquad
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_female_CS.png}
+    \label{fig:blg_4_female_CS}}
+    \subfloat[]{%
+    \includegraphics[width=0.5\textwidth]{figures/blg_4_female_NO_CS.png}
+    \label{fig:blg_4_female_NO_CS}}
+  %
+\caption{Students' Responses for survey question: ``In this class, I feel like I matter.''}
+\label{blg_4_dis}
+\end{figure}
+
+
+
+
+%----------------------------------------------------------------------------------------
+\section*{Conclusion}
+
+This paper has laid out some of the challenge of 
+
+
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\vspace{4\baselineskip}\vspace{-\parskip} % Creaters proper 4 blank line spacing.
+\footnotesize % Makes bibliography 10 pt font.
+\bibliographystyle{unsrtnat} %Can use a different style as long as it is one which uses numbered references in the text.
+\bibliography{dissertation}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}  
