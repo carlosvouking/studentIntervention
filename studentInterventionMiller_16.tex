@@ -69,104 +69,38 @@
 \section*{Introduction}
 
 
+
+
+\section*{Models}
+%-------------------D E C I S I O N  T R E E  C L A S S I F I E R ---------------------%
+
+\subsection*{Decision Tree Classifier}
+\begin{itemize} [noitemsep,nolistsep]
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?
+\item What are the general applications of this model? What are its strengths and weaknesses?
+\item Given what you know about the data so far, why did you choose this model to apply?
+\end{itemize} 
+
+
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
-\caption{Survey Finding with Statistical Significance [Data Disaggregated]} %title of the table
+\caption{Result of training with a DecisionTreeClassifier} %title of the table
 \centering % centering table
-\begin{tabular}{|l|l|p{2cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{1.5cm}|p{2cm}|} % creating eight columns
-\multicolumn{6}{c}%
-      {Survey Finding with Statistical Significance [Data Disaggregated]
-      (\textit{continued})}\\[5pt]
-\hline\hline %inserting double-line
-\multicolumn{2}{ |c| }{Groups} & Survey Instrument & Sample Group & P Value & Significance by Stars & P Value & Significance by Stars\\[1ex] 
-\cline{5-8} 
-& & & &  \multicolumn{2}{c}{\textbf{Prior CS}} & \multicolumn{2}{c|}{\textbf{NO Prior CS}}\\[0.5ex]
+\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
+\hline % inserts single-line
+& \multicolumn{3}{c|}{Training set size}\\[5pt]
+\cline{2-4} 
+& 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-CS10 & CS61A & atcs\_1  
-& Class  & 0.02506  & * & & \\ \hline
-
-CS10 & CS61A & atcs\_2 
-&  Class  & 0.00448  & ** & & \\
-& & &   Male  & 0.00883  & ** & & \\ \hline
-
-CS10 & CS61A & atcs\_3 
-& Class   &   0.01555   &   **    &   & \\
-& & & Class   &   &   &   0.00895   & ** \\
-& & & Female  &   &   &   0.00030   & *** \\ 
-& & & Male    &   0.02903   & *   &   & \\ \hline
-
-CS10 & CS61A & atcs\_4 
-& Class   & 0.04441   & * & & \\
-& & & Class  & & & 0.00341   & ** \\
-& & & Male   & & & 0.00573   & ** \\ \hline
-
-CS10 & CS61A & atcs\_6 
-& Class  & 0.00638   & ** & & \\
-& & & Male   & 0.00852   & ** & & \\ \hline
-
-CS10 & CS61A & atcs\_7 
-& Class  & 0.00064   & *** & & \\
-& & & Male   & 0.02253   & * & & \\ \hline
-
-CS10 & CS61A & atcs\_9
-& Class  & 0.01197   & ** & & \\ \hline
-
-CS10 & CS61A & atcsgender\_1
-& Female  & & & 0.00214   & ** \\ \hline
-
-CS10 & CS61A & atcsgender\_2 
-& Class  & 0.01138   & ** & & \\ \hline
-
-CS10 & CS61A & atct\_2
-& Female & 0.02310   & *& & \\ \hline
-
-CS10 & CS61A & atct\_3 
-& Class   & & & 0.00911    & ** \\
-& & & Female  & & & 0.00258    & ** \\ \hline
-
-CS10 & CS61A & atct\_5
-& Class & 0.00000   & **** & &  \\
-& & & Class   & & & 0.00627 & ** \\
-& & & Female   & 0.00024   & *** & & \\
-& & & Male     & 0.00001   & **** & & \\ \hline
-
-CS10 & CS61A & atct\_6
-& Class  & 0.02987   & * & & \\ \hline
-
+Training time (secs)   &       0.001 & 0.001 & 0.002 \\
+Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
+F1 score for training set  &   1.000 & 1.000 & 1.000 \\
+F1 score for test set    &     0.683 & 0.703 & 0.758 \\
+\hline % inserts single-line
 \end{tabular}
-\label{surveyDisAggregated}
+\label{decisionTreeTable}
 \end{table}
-
-
-%-------------------N O  P R I O R  C S  &  G E N D E R ---------------------%
-
-\begin{figure}[!htbp]
-  \centering
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_CS61aVersusCS10_CS.png}
-    \label{fig:blg_4_CS}}
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_CS61aVersusCS10_NO_CS.png}
-    \label{fig:blg_4_NO_CS}}
-    \qquad
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_male_CS.png}
-    \label{fig:blg_4_male_CS}}
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_male_NO_CS.png}
-    \label{fig:blg_4_male_NO_CS}}
-    \qquad
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_female_CS.png}
-    \label{fig:blg_4_female_CS}}
-    \subfloat[]{%
-    \includegraphics[width=0.5\textwidth]{figures/blg_4_female_NO_CS.png}
-    \label{fig:blg_4_female_NO_CS}}
-  %
-\caption{Students' Responses for survey question: ``In this class, I feel like I matter.''}
-\label{blg_4_dis}
-\end{figure}
 
 
 
