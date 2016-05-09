@@ -72,7 +72,7 @@
 
 
 \section*{Models}
-%-------------------D E C I S I O N  T R E E  C L A S S I F I E R ---------------------%
+%-------------------------------DECISION TREE CLASSIFIER----------------------------------%
 
 \subsection*{Decision Tree Classifier}
 \begin{itemize} [noitemsep,nolistsep]
@@ -102,7 +102,7 @@ F1 score for test set    &     0.683 & 0.703 & 0.758 \\
 \label{decisionTreeTable}
 \end{table}
 
-%-------------------S V M ---------------------%
+%-------------------------------------------S V M -----------------------------------------%
 
 \subsection*{Support Vector Machine}
 \begin{itemize} [noitemsep,nolistsep]
@@ -129,7 +129,37 @@ F1 score for training set  &   0.909 & 0.853 & 0.830 \\
 F1 score for test set    &     0.767 & 0.769 & 0.779 \\
 \hline % inserts single-line
 \end{tabular}
-\label{decisionTreeTable}
+\label{svmTable}
+\end{table}
+
+%-----------------------------RANDOM FOREST CLASSIFIER---------------------------------------%
+
+\subsection*{Random Forest Classifier}
+\begin{itemize} [noitemsep,nolistsep]
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?
+\item What are the general applications of this model? What are its strengths and weaknesses?
+\item Given what you know about the data so far, why did you choose this model to apply?
+\end{itemize} 
+
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Result of training with a Random Forest Classifier} %title of the table
+\centering % centering table
+\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
+\hline % inserts single-line
+& \multicolumn{3}{c|}{Training set size}\\[5pt]
+\cline{2-4} 
+& 100 & 200 & 300\\[0.5ex]
+\hline % inserts single-line
+
+Training time (secs)   &       0.029 & 0.020 & 0.026 \\
+Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
+F1 score for training set  &   0.984 & 0.989 & 0.997 \\
+F1 score for test set    &     0.722 & 0.774 & 0.694 \\
+\hline % inserts single-line
+\end{tabular}
+\label{randomForestClassifierTable}
 \end{table}
 
 
