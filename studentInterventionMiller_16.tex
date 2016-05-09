@@ -38,6 +38,59 @@
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
+
+ % For text right arrow in chapter 1
+ \usepackage{textcomp}
+ 
+ % For highlighted paragraphs
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+% For listing code
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold 
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+
+\usepackage{listings}
+
+
+ % Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+    \pythonstyle
+    \lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
 %----------------------------------------------------------------------------------------
 %  TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -67,6 +120,10 @@
 %  PAPER CONTENTS
 %----------------------------------------------------------------------------------------
 \section*{Introduction}
+
+Your goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?
+
+This sounds like a classic classification problem because we are trying to classify our data into two separate classes. The inherent task is "predicting a category." Another support we have in evaluating this problem as a classification problem is that we can consider our data as labeled. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\pythoninline{passed}' column as our class label.
 
 
 
@@ -162,10 +219,17 @@ F1 score for test set    &     0.722 & 0.774 & 0.694 \\
 \label{randomForestClassifierTable}
 \end{table}
 
-
-
-
 %----------------------------------------------------------------------------------------
+
+\section*{Best Model}
+Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
+
+In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
+
+Fine-tune the model. Use Gridsearch with at least one important parameter tuned and with at least 3 settings. Use the entire training set for this.
+What is the model's final F1 score?
+
+
 \section*{Conclusion}
 
 This paper has laid out some of the challenge of 
