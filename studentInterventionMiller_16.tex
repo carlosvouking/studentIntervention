@@ -120,12 +120,12 @@ showstringspaces=false            %
 %  PAPER CONTENTS
 %----------------------------------------------------------------------------------------
 \section*{Introduction}
-
 Your goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?
 
-This sounds like a classic classification problem because we are trying to classify our data into two separate classes. The inherent task is "predicting a category." Another support we have in evaluating this problem as a classification problem is that we can consider our data as labeled. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\pythoninline{passed}' column as our class label.
-
-
+\begin{itemize}[noitemsep,nolistsep]
+\item 
+This task sounds like a problem that would be best suited for a classification algorithm. The inherent task is to develop a learners that can "predicting a category." If we look at the problem from another perspective, we can consider the student data available as a ``labeled'' dataset. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\pythoninline{passed}' column as our class label.
+\end{itemize}
 
 
 \section*{Models}
@@ -133,8 +133,32 @@ This sounds like a classic classification problem because we are trying to class
 
 \subsection*{Decision Tree Classifier}
 \begin{itemize} [noitemsep,nolistsep]
-\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?
-\item What are the general applications of this model? What are its strengths and weaknesses?
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
+The theoretical time \& space complexity of decision trees classifiers as implemented in scikit learn package is $O(n_{features} n^2_{samples} log(n_{samples}))$.
+\item What are the general applications of this model? What are its strengths and weaknesses?\\ 
+The decision tree algorithm is usually applied to classification and regression problems. 
+       \begin{itemize}[noitemsep,nolistsep]
+       \item Advantages of decision trees:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Simple to understand and to interpret. 
+                     \item Requires little data preparation. 
+                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree.
+                     \item Able to handle both numerical and categorical data.
+                     \item Is an explainable algorithm---a white ox model. If a given situation is observable in a model, the explanation for the condition is easily explained by boolean logic.
+                     \item Possible to validate a model using statistical tests. 
+                     \item Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
+              \end{itemize}
+       \item Disadvantages of decision trees:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Decision-tree learners can create over-complex trees that do not generalise the data well.
+                     \item Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. 
+                     \item The problem of learning an optimal decision tree is known to be NP-complete under several aspects of optimality and even for simple concepts. 
+                     \item There are concepts that are hard to learn because decision trees do not express them easily, such as XOR, parity or multiplexer problems.
+                     \item Decision tree learners create biased trees if some classes dominate. 
+              \end{itemize}
+       \end{itemize}
+
+
 \item Given what you know about the data so far, why did you choose this model to apply?
 \end{itemize} 
 
