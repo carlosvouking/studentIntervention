@@ -142,23 +142,23 @@ For the student intervention challenge, three supervised learning algorithms hav
 \subsection*{Decision Tree Classifier}
 \begin{itemize} [noitemsep,nolistsep]
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
-The theoretical time \& space complexity of decision trees classifiers as implemented in scikit learn package is $O(n_{features} n^2_{samples} log(n_{samples}))$.
+The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is $O(n_{features} n^2_{samples} log(n_{samples}))$.
 \item What are the general applications of this model? What are its strengths and weaknesses?\\ 
 The decision tree algorithm is usually applied to classification and regression problems. 
        \begin{itemize}[noitemsep,nolistsep]
        \item Advantages of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
-                     \item Simple to understand and to interpret. 
+                     \item Very intuitive. You can look at the results and understand it. 
                      \item Requires little data preparation. 
                      \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree.
                      \item Able to handle both numerical and categorical data.
                      \item Is an explainable algorithm---a white ox model. If a given situation is observable in a model, the explanation for the condition is easily explained by boolean logic.
                      \item Possible to validate a model using statistical tests. 
-                     \item Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
+                     \item Very robust. Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
               \end{itemize}
        \item Disadvantages of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
-                     \item Decision-tree learners can create over-complex trees that do not generalise the data well.
+                     \item Decision-tree learners can create over-complex trees that do not generalize the data well. They are prone to over-fitting especially in the case of data with lots of features.
                      \item Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. 
                      \item The problem of learning an optimal decision tree is known to be NP-complete under several aspects of optimality and even for simple concepts. 
                      \item There are concepts that are hard to learn because decision trees do not express them easily, such as XOR, parity or multiplexer problems.
@@ -167,7 +167,9 @@ The decision tree algorithm is usually applied to classification and regression 
        \end{itemize}
 
 
-\item Given what you know about the data so far, why did you choose this model to apply?
+\item Given what you know about the data so far, why did you choose this model to apply?\\
+The decision tree classifier was chosen because of its ease of use and its relatively cheap time complexity.\\
+Another \textit{major} reason why the decision tree classifier was selected was its ease of interpretation of the classifier results. For this problem domain, it isn't just satisfactory to identify students that need intervention, what learning researchers ultimately want is to gain \textit{insights} into the nature of learning, and the social factors that lead to certain outcomes for at-risk students. A decision tree learner, with its ability to graphically plot out the tree becomes a research tool in the hands of learning scientist. Consequently, this can help the school board of supervisors build better solutions for those students which well executed could potentially reduce the costs associated with remediating failed students.
 \end{itemize} 
 
 
@@ -185,11 +187,29 @@ The decision tree algorithm is usually applied to classification and regression 
 Training time (secs)   &       0.001 & 0.001 & 0.002 \\
 Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
 F1 score for training set  &   1.000 & 1.000 & 1.000 \\
-F1 score for test set    &     0.683 & 0.703 & 0.758 \\
+F1 score for test set    &     0.737 & 0.775 & 0.690 \\
 \hline % inserts single-line
 \end{tabular}
 \label{decisionTreeTable}
 \end{table}
+
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{DecisionTreeClassifier - Confusion Matrix} %title of the table
+\centering % centering table
+\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
+\hline % inserts single-line
+\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
+\cline{3-4}
+\multirow{2}{*}{} & & Passed & Fail \\ 
+\hline
+\multirow{2}{1.5in}{Predicted Class} & Passed & 19.000 & 14.000 \\ 
+%\cline{2-2}
+ & Fail & 22.000 & 40.000  \\ \hline
+\end{tabular}
+\end{table}
+
 
 %-------------------------------------------S V M -----------------------------------------%
 
