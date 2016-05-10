@@ -132,31 +132,30 @@ This task sounds like a problem that would be best suited for a classification a
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
 \begin{enumerate}[noitemsep,nolistsep]
 \item Decision tree classifier
-\item Support vector machines
 \item Random forest classifier
+\item Support vector machines
 \end{enumerate}
 
 
 %-------------------------------DECISION TREE CLASSIFIER----------------------------------%
 
 \subsection*{Decision Tree Classifier}
-\begin{itemize} [noitemsep,nolistsep]
+\begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
-The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is $O(n_{features} n^2_{samples} log(n_{samples}))$.
-\item What are the general applications of this model? What are its strengths and weaknesses?\\ 
-The decision tree algorithm is usually applied to classification and regression problems. 
+The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is $O(v_{features} n^2_{samples} log(n_{samples}))$.
+\item What are the general applications of this model?\\
+The decision tree algorithm is usually applied to classification and regression problems.\\
+What are its strengths and weaknesses?\\  
        \begin{itemize}[noitemsep,nolistsep]
-       \item Advantages of decision trees:
+       \item Strengths of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Very intuitive. You can look at the results and understand it. 
                      \item Requires little data preparation. 
-                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree.
+                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pNlog^2N)$
                      \item Able to handle both numerical and categorical data.
-                     \item Is an explainable algorithm---a white ox model. If a given situation is observable in a model, the explanation for the condition is easily explained by boolean logic.
-                     \item Possible to validate a model using statistical tests. 
                      \item Very robust. Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
               \end{itemize}
-       \item Disadvantages of decision trees:
+       \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Decision-tree learners can create over-complex trees that do not generalize the data well. They are prone to over-fitting especially in the case of data with lots of features.
                      \item Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. 
@@ -210,44 +209,35 @@ F1 score for test set    &     0.737 & 0.775 & 0.690 \\
 \end{tabular}
 \end{table}
 
-
-%-------------------------------------------S V M -----------------------------------------%
-
-\subsection*{Support Vector Machine}
-\begin{itemize} [noitemsep,nolistsep]
-\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?
-\item What are the general applications of this model? What are its strengths and weaknesses?
-\item Given what you know about the data so far, why did you choose this model to apply?
-\end{itemize} 
-
-
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{Result of training with a Support Vector Machine} %title of the table
-\centering % centering table
-\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
-\hline % inserts single-line
-& \multicolumn{3}{c|}{Training set size}\\[5pt]
-\cline{2-4} 
-& 100 & 200 & 300\\[0.5ex]
-\hline % inserts single-line
-
-Training time (secs)   &       0.008 & 0.010 & 0.051 \\
-Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
-F1 score for training set  &   0.909 & 0.853 & 0.830 \\
-F1 score for test set    &     0.767 & 0.769 & 0.779 \\
-\hline % inserts single-line
-\end{tabular}
-\label{svmTable}
-\end{table}
-
 %-----------------------------RANDOM FOREST CLASSIFIER---------------------------------------%
 
 \subsection*{Random Forest Classifier}
 \begin{itemize} [noitemsep,nolistsep]
-\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?
-\item What are the general applications of this model? What are its strengths and weaknesses?
-\item Given what you know about the data so far, why did you choose this model to apply?
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
+The theoretical time \& space complexity for building a complete unpruned decision tree is 
+$O(v_{features} * n^2_{samples} log(n_{samples}))$. For a random forest with mtry as the number of features sampled at each node, the complexity would be $O( n_{estimators} * mtry * * n^2_{samples} log(n_{samples}) )$
+
+\item What are the general applications of this model?\\
+Ensemble learners are used in supervised learning. The goal of the random forest classifier is to combine the results of multiple classifiers, it is an ensemble of decision trees. The prediction of the classifier is the averaged prediction of the individual classifiers. 
+What are its strengths and weaknesses?\\
+\begin{itemize}[noitemsep,nolistsep]
+       \item Strenghts of SVMs:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Considered one of the best off-the-shelf learning algorithm, requires almost no tuning. 
+                     \item Fast to train
+                     \item Flexible, can be used with large number of attributes, small or large datasets
+                     \item Good control of bias and variance because of the averaging and randomization which leads to better performance.
+              \end{itemize}
+       \item Weaknesses of decision trees:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Loss of interpretability as compared to decision trees give.
+                     \item Can be costly to train because of number of trees. However, the algorithm leads itself well to parallelization which significantly boosts the speed.
+              \end{itemize}
+       \end{itemize}
+
+
+\item Given what you know about the data so far, why did you choose this model to apply?\\
+This learners was chosen as a means of reducing the effects of overfitting of decision trees.
 \end{itemize} 
 
 
@@ -262,14 +252,98 @@ F1 score for test set    &     0.767 & 0.769 & 0.779 \\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)   &       0.029 & 0.020 & 0.026 \\
-Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
-F1 score for training set  &   0.984 & 0.989 & 0.997 \\
-F1 score for test set    &     0.722 & 0.774 & 0.694 \\
+Training time (secs)   &       0.361 & 0.370 & 0.387 \\
+Prediction time (secs)   &     0.011 & 0.011 & 0.012 \\
+F1 score for training set  &   1.000 & 1.000 & 1.000 \\
+F1 score for test set    &     0.805 & 0.814 & 0.783 \\
 \hline % inserts single-line
 \end{tabular}
 \label{randomForestClassifierTable}
 \end{table}
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Random Forest Classifier - Confusion Matrix} %title of the table
+\centering % centering table
+\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
+\hline % inserts single-line
+\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
+\cline{3-4}
+\multirow{2}{*}{} & & Passed & Fail \\ 
+\hline
+\multirow{2}{1.5in}{Predicted Class} & Passed & 11.000 & 22.000  \\ 
+%\cline{2-2}
+ & Fail & 8.000 & 54.000  \\ \hline
+\end{tabular}
+\end{table}
+
+%-------------------------------------------S V M -----------------------------------------%
+
+\subsection*{Support Vector Machine (SVMs)}
+\begin{itemize}
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
+The theoretical time \& space complexity of SVMs scales between $O(n_{features} * n^2_{samples})$ and $O(n_{features} * n^3_{samples})$. Its a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors.
+
+\item What are the general applications of this model?\\ 
+SVMs are an algorithm used for classification, regression and outlier detection.\\
+What are its strengths and weaknesses?
+\begin{itemize}[noitemsep,nolistsep]
+       \item Strenghts of SVMs:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Effective in high dimensional spaces.
+                     \item Still effective in cases where number of dimensions is greater than the number of samples.
+                     \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
+                     \item Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
+              \end{itemize}
+       \item Weaknesses of decision trees:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item If the number of features is much greater than the number of samples, the method is likely to give poor performances.
+                     \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
+              \end{itemize}
+       \end{itemize}
+
+\item Given what you know about the data so far, why did you choose this model to apply?\\
+The general approach is to try a few different algorithms for each problem. Sci-kit learn provides a guide to choosing estimators. Based on the guide, and satisfying the following criteria: {100K \textgreater samples \textgreater 50, Predicting a category \& Labeled data}, a linear SVC was selected. 
+\end{itemize}
+
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Result of training with a SVMs} %title of the table
+\centering % centering table
+\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
+\hline % inserts single-line
+& \multicolumn{3}{c|}{Training set size}\\[5pt]
+\cline{2-4} 
+& 100 & 200 & 300\\[0.5ex]
+\hline % inserts single-line
+
+Training time (secs)   &       0.005 & 0.018 & 0.025 \\
+Prediction time (secs)   &     0.000 & 0.001 & 0.001 \\
+F1 score for training set  &   0.916 & 0.826 & 0.851 \\
+F1 score for test set    &     0.713 & 0.738 & 0.738 \\
+\hline % inserts single-line
+\end{tabular}
+\label{svmTable}
+\end{table}
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{SVMs - Confusion Matrix} %title of the table
+\centering % centering table
+\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
+\hline % inserts single-line
+\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
+\cline{3-4}
+\multirow{2}{*}{} & & Passed & Fail \\ 
+\hline
+\multirow{2}{1.5in}{Predicted Class} & Passed & 13.000 & 20.000 \\ 
+%\cline{2-2}
+ & Fail & 14.000 & 48.000  \\ \hline
+\end{tabular}
+\end{table}
+
+
 
 %----------------------------------------------------------------------------------------
 
