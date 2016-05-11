@@ -12,6 +12,13 @@
 \usepackage[numbers,super]{natbib}
 \usepackage{enumitem} %get rid of spaces in listened
 
+\usepackage{hyperref}
+\hypersetup{%
+    colorlinks=true, 
+    citecolor=black,
+    linkcolor=blue,
+    urlcolor =cyan } 
+
 % For the images and graphics
 \usepackage{subfig} % For subfigures in floats
 \usepackage[section]{placeins}
@@ -131,10 +138,11 @@ This task sounds like a problem that would be best suited for a classification a
 \section*{Models}
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
 \begin{enumerate}[noitemsep,nolistsep]
-\item Decision tree classifier
-\item Random forest classifier
-\item Support vector machines
+\item Decision Tree Classifier
+\item Random Forest Classifier
+\item Support Vector Machines
 \end{enumerate}
+
 
 
 %-------------------------------DECISION TREE CLASSIFIER----------------------------------%
@@ -142,16 +150,23 @@ For the student intervention challenge, three supervised learning algorithms hav
 \subsection*{Decision Tree Classifier}
 \begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
-The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is $O(v_{features} n^2_{samples} log(n_{samples}))$.
+The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is:
+\begin{itemize}[noitemsep,nolistsep]
+\item Best Case: $\Theta(pN\log^2 N)$ 
+\item Worst Case: $O(pN^2\log N)$
+\item Average Case: $\Theta(pN\log^2 N)$
+\end{itemize}
+Where $N$ denotes the number of samples, and $p$ the number of input variables. \footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
+
 \item What are the general applications of this model?\\
 The decision tree algorithm is usually applied to classification and regression problems.\\
 What are its strengths and weaknesses?\\  
-       \begin{itemize}[noitemsep,nolistsep]
+       \begin{itemize}
        \item Strengths of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Very intuitive. You can look at the results and understand it. 
                      \item Requires little data preparation. 
-                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pNlog^2N)$
+                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pN\log^2 N)$
                      \item Able to handle both numerical and categorical data.
                      \item Very robust. Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
               \end{itemize}
@@ -168,54 +183,25 @@ What are its strengths and weaknesses?\\
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
 The decision tree classifier was chosen because of its ease of use and its relatively cheap time complexity.\\
-Another \textit{major} reason why the decision tree classifier was selected was its ease of interpretation of the classifier results. For this problem domain, it isn't just satisfactory to identify students that need intervention, what learning researchers ultimately want is to gain \textit{insights} into the nature of learning, and the social factors that lead to certain outcomes for at-risk students. A decision tree learner, with its ability to graphically plot out the tree becomes a research tool in the hands of learning scientist. Consequently, this can help the school board of supervisors build better solutions for those students which well executed could potentially reduce the costs associated with remediating failed students.
+Another \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it isn't just satisfactory to identify students that need intervention, what learning researchers ultimately want is to gain \textit{insights} into the nature of learning, and the social factors that lead to certain outcomes for at-risk students. A decision tree learner, with its ability to graphically plot out the tree becomes a research tool in the hands of learning scientist. Consequently, this can help the school board of supervisors build better solutions for those students which well executed could potentially reduce the costs associated with remediating failed students.
 \end{itemize} 
 
 
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{Result of training with a DecisionTreeClassifier} %title of the table
-\centering % centering table
-\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
-\hline % inserts single-line
-& \multicolumn{3}{c|}{Training set size}\\[5pt]
-\cline{2-4} 
-& 100 & 200 & 300\\[0.5ex]
-\hline % inserts single-line
 
-Training time (secs)   &       0.001 & 0.001 & 0.002 \\
-Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
-F1 score for training set  &   1.000 & 1.000 & 1.000 \\
-F1 score for test set    &     0.737 & 0.775 & 0.690 \\
-\hline % inserts single-line
-\end{tabular}
-\label{decisionTreeTable}
-\end{table}
-
-
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{DecisionTreeClassifier - Confusion Matrix} %title of the table
-\centering % centering table
-\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
-\hline % inserts single-line
-\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
-\cline{3-4}
-\multirow{2}{*}{} & & Passed & Fail \\ 
-\hline
-\multirow{2}{1.5in}{Predicted Class} & Passed & 19.000 & 14.000 \\ 
-%\cline{2-2}
- & Fail & 22.000 & 40.000  \\ \hline
-\end{tabular}
-\end{table}
 
 %-----------------------------RANDOM FOREST CLASSIFIER---------------------------------------%
 
 \subsection*{Random Forest Classifier}
-\begin{itemize} [noitemsep,nolistsep]
+\begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
-The theoretical time \& space complexity for building a complete unpruned decision tree is 
-$O(v_{features} * n^2_{samples} log(n_{samples}))$. For a random forest with mtry as the number of features sampled at each node, the complexity would be $O( n_{estimators} * mtry * * n^2_{samples} log(n_{samples}) )$
+The theoretical time \& space complexity for building a complete unpruned decision tree is:
+\begin{itemize}[noitemsep,nolistsep]
+\item Best Case: $\Theta(MK\widetilde{N}\log^2 \widetilde{N})$ 
+\item Worst Case: $O(MK\widetilde{N}^2\log \widetilde{N})$ 
+\item Average Case: $\Theta(MK\widetilde{N}\log^2 \widetilde{N})$
+\end{itemize}
+Where $M$ denotes number of randomized trees, $N$ the number of samples, $p$ the number of input variables and $K$ the number of variables randomly drawn at each node. $\widetilde{N} = 0.632 N$, due to the fact that bootstrap samples draw, on average, $63.2\%$ of unique samples. 
+\footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
 
 \item What are the general applications of this model?\\
 Ensemble learners are used in supervised learning. The goal of the random forest classifier is to combine the results of multiple classifiers, it is an ensemble of decision trees. The prediction of the classifier is the averaged prediction of the individual classifiers. 
@@ -241,9 +227,125 @@ This learners was chosen as a means of reducing the effects of overfitting of de
 \end{itemize} 
 
 
+
+%-------------------------------------------S V M -----------------------------------------%
+
+\subsection*{Support Vector Machine (SVMs)}
+\begin{itemize}
+\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
+The theoretical time \& space complexity of SVMs is:
+\begin{itemize}[noitemsep,nolistsep]
+\item Best Case: $\Theta(pN^2)$ 
+\item Worst Case: $O(pN^3)$
+\item Average Case: $\Theta(pN^2)$
+\end{itemize}
+Where $N$ denotes the number of samples, and $p$ the number of input variables. 
+Its a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors.
+
+\item What are the general applications of this model?\\ 
+SVMs are an algorithm used for classification, regression and outlier detection.\\
+What are its strengths and weaknesses?
+\begin{itemize}
+       \item Strenghts of SVMs:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item Effective in high dimensional spaces.
+                     \item Still effective in cases where number of dimensions is greater than the number of samples.
+                     \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
+                     \item Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
+              \end{itemize}
+       \item Weaknesses of decision trees:
+              \begin{itemize}[noitemsep,nolistsep]
+                     \item If the number of features is much greater than the number of samples, the method is likely to give poor performances.
+                     \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
+              \end{itemize}
+       \end{itemize}
+
+\item Given what you know about the data so far, why did you choose this model to apply?\\
+The general approach is to try a few different algorithms for each problem. Sci-kit learn provides a guide to choosing estimators. Based on the guide, and our task satisfying the following criteria: {100K \textgreater samples \textgreater 50, goal of predicting a category \& availability of labeled data}, a linear SVC was selected. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\section*{Best Model}
+Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
+
+For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Decision Tree Classifier}. First, it is a relatively fast algorithm to train and predict. 
+
+Second, it is important to note what we are trying to do here. We are trying to identify students who need intervention, students who left to their own devices will \textbf{not} pass the class. Given our task, as we can see from table \ref{decisionTreeConfusionMatrix}, the cost of \textbf{false positive} are higher in comparison to misidentifying students who actually are fine. Consequently, the ideal model we should optimize for is the one with the lowest number of false positives, i.e., highest recall. As we can see from table \ref{scoresTable}, that also happens to be the Decision Tree Classifier. 
+
+For this problem, the F\textsubscript{1} score isn't the most ideal evaluation metric because its a combined metric of recall and precision. For our problem, based on the domain, we should put more emphasis on precision.
+
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
-\caption{Result of training with a Random Forest Classifier} %title of the table
+\caption{Evaluation Metrics} %title of the table
+\centering % centering table
+\begin{tabular}{|l|r|r|r|r|} % creating four columns
+\hline % inserts single-line
+& Accuracy & Precision & Recall & F\textsubscript{1}\\[0.5ex]
+\hline % inserts single-line
+SVC           & 0.642105   & 0.705882  & 0.774194  & 0.738462\\
+RandomForest  & 0.684211   & 0.710526  & 0.870968  & 0.782609\\
+DecisionTree  & 0.621053   & 0.740741  & 0.645161  & 0.689655\\
+\hline % inserts single-line
+\end{tabular}
+\label{scoresTable}
+\end{table}
+
+
+
+\section*{Conclusion}
+
+This paper has laid out some of the challenge of 
+
+
+
+
+
+%-------------------------------------------T A B L E S-----------------------------------------%
+
+\section*{Tables}
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Result of training with a \textbf{DecisionTreeClassifier}} %title of the table
+\centering % centering table
+\begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
+\hline % inserts single-line
+& \multicolumn{3}{c|}{Training set size}\\[5pt]
+\cline{2-4} 
+& 100 & 200 & 300\\[0.5ex]
+\hline % inserts single-line
+
+Training time (secs)   &       0.001 & 0.001 & 0.002 \\
+Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
+F1 score for training set  &   1.000 & 1.000 & 1.000 \\
+F1 score for test set    &     0.737 & 0.775 & 0.690 \\
+\hline % inserts single-line
+\end{tabular}
+\label{decisionTreeTable}
+\end{table}
+
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{\textbf{DecisionTreeClassifier} - Confusion Matrix} %title of the table
+\centering % centering table
+\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
+\hline % inserts single-line
+\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
+\cline{3-4}
+\multirow{2}{*}{} & & Passed & Fail \\ 
+\hline
+\multirow{2}{1.5in}{Predicted Class} & Passed & 19.000 & 14.000 \\ 
+%\cline{2-2}
+ & Fail & 22.000 & 40.000  \\ \hline
+\end{tabular}
+\label{decisionTreeConfusionMatrix}
+\end{table}
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Result of training with a \textbf{Random Forest Classifier}} %title of the table
 \centering % centering table
 \begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
 \hline % inserts single-line
@@ -263,7 +365,7 @@ F1 score for test set    &     0.805 & 0.814 & 0.783 \\
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
-\caption{Random Forest Classifier - Confusion Matrix} %title of the table
+\caption{\textbf{Random Forest Classifier} - Confusion Matrix} %title of the table
 \centering % centering table
 \begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
 \hline % inserts single-line
@@ -277,39 +379,9 @@ F1 score for test set    &     0.805 & 0.814 & 0.783 \\
 \end{tabular}
 \end{table}
 
-%-------------------------------------------S V M -----------------------------------------%
-
-\subsection*{Support Vector Machine (SVMs)}
-\begin{itemize}
-\item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
-The theoretical time \& space complexity of SVMs scales between $O(n_{features} * n^2_{samples})$ and $O(n_{features} * n^3_{samples})$. Its a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors.
-
-\item What are the general applications of this model?\\ 
-SVMs are an algorithm used for classification, regression and outlier detection.\\
-What are its strengths and weaknesses?
-\begin{itemize}[noitemsep,nolistsep]
-       \item Strenghts of SVMs:
-              \begin{itemize}[noitemsep,nolistsep]
-                     \item Effective in high dimensional spaces.
-                     \item Still effective in cases where number of dimensions is greater than the number of samples.
-                     \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-                     \item Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
-              \end{itemize}
-       \item Weaknesses of decision trees:
-              \begin{itemize}[noitemsep,nolistsep]
-                     \item If the number of features is much greater than the number of samples, the method is likely to give poor performances.
-                     \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
-              \end{itemize}
-       \end{itemize}
-
-\item Given what you know about the data so far, why did you choose this model to apply?\\
-The general approach is to try a few different algorithms for each problem. Sci-kit learn provides a guide to choosing estimators. Based on the guide, and satisfying the following criteria: {100K \textgreater samples \textgreater 50, Predicting a category \& Labeled data}, a linear SVC was selected. 
-\end{itemize}
-
-
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
-\caption{Result of training with a SVMs} %title of the table
+\caption{Result of training with a \textbf{SVMs}} %title of the table
 \centering % centering table
 \begin{tabular}{|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|} % creating four columns
 \hline % inserts single-line
@@ -329,7 +401,7 @@ F1 score for test set    &     0.713 & 0.738 & 0.738 \\
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
-\caption{SVMs - Confusion Matrix} %title of the table
+\caption{\textbf{SVMs} - Confusion Matrix} %title of the table
 \centering % centering table
 \begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
 \hline % inserts single-line
@@ -345,33 +417,6 @@ F1 score for test set    &     0.713 & 0.738 & 0.738 \\
 
 
 
-%----------------------------------------------------------------------------------------
 
-\section*{Best Model}
-Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
-
-In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
-
-Fine-tune the model. Use Gridsearch with at least one important parameter tuned and with at least 3 settings. Use the entire training set for this.
-What is the model's final F1 score?
-
-
-\section*{Conclusion}
-
-This paper has laid out some of the challenge of 
-
-
-
-
-
-
-
-
-
-
-
-
-
-%----------------------------------------------------------------------------------------
 
 \end{document}  
