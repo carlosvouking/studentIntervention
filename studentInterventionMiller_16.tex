@@ -210,14 +210,13 @@ What are its strengths and weaknesses?\\
        \item Strenghts of SVMs:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Considered one of the best off-the-shelf learning algorithm, requires almost no tuning. 
-                     \item Fast to train
+                     \item Fast to train because algorithm lends itself well to parallelization
                      \item Flexible, can be used with large number of attributes, small or large datasets
                      \item Good control of bias and variance because of the averaging and randomization which leads to better performance.
               \end{itemize}
        \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Loss of interpretability as compared to decision trees give.
-                     \item Can be costly to train because of number of trees. However, the algorithm leads itself well to parallelization which significantly boosts the speed.
               \end{itemize}
        \end{itemize}
 
@@ -251,12 +250,13 @@ What are its strengths and weaknesses?
                      \item Effective in high dimensional spaces.
                      \item Still effective in cases where number of dimensions is greater than the number of samples.
                      \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-                     \item Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
+                     \item Versatile: utilizes kernel transformation and several functional forms so can be applied to nonlinear data.
               \end{itemize}
        \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
                      \item If the number of features is much greater than the number of samples, the method is likely to give poor performances.
                      \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
+                     \item SVM is a binary classifier. To do a multi-class classification, only pair-wise classifications can be used (one class against all others, for all classes).
               \end{itemize}
        \end{itemize}
 
