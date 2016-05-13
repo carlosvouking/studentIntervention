@@ -31,7 +31,7 @@
       \usepackage{hyperref}
           }
 \makeatother
-\graphicspath{ {/Users/omojumiller/mycode/MachineLearningNanoDegree/Machine-Learning-Project/studentIntervention/images/} } %Path to images
+\graphicspath{ {/Users/omojumiller/mycode/MachineLearningNanoDegree/Machine-Learning-Project/studentIntervention} } %Path to images
 
 
 % For cutesy tables
@@ -269,27 +269,20 @@ The general approach is to try a few different algorithms for each problem. Sci-
 \section*{Best Model}
 Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
+\begin{figure}[!htbp]
+  \centering
+    \includegraphics[width=0.5\textwidth]{images/y_all}
+  %
+\caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of (0) and over 250 values of (1).}}
+\end{figure}
+
+
 For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Decision Tree Classifier}. First, it is a relatively fast algorithm to train and predict. 
 
-Second, it is important to note what we are trying to do here. We are trying to identify students who need intervention, students who left to their own devices will \textbf{not} pass the class. Given our task, as we can see from table \ref{decisionTreeConfusionMatrix}, the cost of \textbf{false positive} are higher in comparison to misidentifying students who actually are fine. Consequently, the ideal model we should optimize for is the one with the lowest number of false positives, i.e., highest recall. As we can see from table \ref{scoresTable}, that also happens to be the Decision Tree Classifier. 
+Second, it is important to note what we are trying to do here. We are trying to identify students who need intervention, students who left to their own devices will \textbf{not} pass the class. Given our task, as we can see from, the cost of \textbf{false positive} are higher in comparison to misidentifying students who actually are fine. Consequently, the ideal model we should optimize for is the one with the lowest number of false positives, i.e., highest recall. As we can see from table \ref{scoresTable}, that also happens to be the Decision Tree Classifier. 
 
-For this problem, the F\textsubscript{1} score isn't the most ideal evaluation metric because its a combined metric of recall and precision. For our problem, based on the domain, we should put more emphasis on precision.
 
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{Evaluation Metrics} %title of the table
-\centering % centering table
-\begin{tabular}{|l|r|r|r|r|} % creating four columns
-\hline % inserts single-line
-& Accuracy & Precision & Recall & F\textsubscript{1}\\[0.5ex]
-\hline % inserts single-line
-SVC           & 0.642105   & 0.705882  & 0.774194  & 0.738462\\
-RandomForest  & 0.684211   & 0.710526  & 0.870968  & 0.782609\\
-DecisionTree  & 0.621053   & 0.740741  & 0.645161  & 0.689655\\
-\hline % inserts single-line
-\end{tabular}
-\label{scoresTable}
-\end{table}
+
 
 
 
@@ -319,24 +312,6 @@ F1 score for test set    &     0.737 & 0.775 & 0.690 \\
 \label{decisionTreeTable}
 \end{table}
 
-
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{\textbf{DecisionTreeClassifier} - Confusion Matrix} %title of the table
-\centering % centering table
-\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
-\hline % inserts single-line
-\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
-\cline{3-4}
-\multirow{2}{*}{} & & Passed & Fail \\ 
-\hline
-\multirow{2}{1.5in}{Predicted Class} & Passed & 19.000 & 14.000 \\ 
-%\cline{2-2}
- & Fail & 22.000 & 40.000  \\ \hline
-\end{tabular}
-\label{decisionTreeConfusionMatrix}
-\end{table}
-
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
 \caption{Result of training with a \textbf{Random Forest Classifier}} %title of the table
@@ -357,21 +332,6 @@ F1 score for test set    &     0.805 & 0.814 & 0.783 \\
 \label{randomForestClassifierTable}
 \end{table}
 
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{\textbf{Random Forest Classifier} - Confusion Matrix} %title of the table
-\centering % centering table
-\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
-\hline % inserts single-line
-\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
-\cline{3-4}
-\multirow{2}{*}{} & & Passed & Fail \\ 
-\hline
-\multirow{2}{1.5in}{Predicted Class} & Passed & 11.000 & 22.000  \\ 
-%\cline{2-2}
- & Fail & 8.000 & 54.000  \\ \hline
-\end{tabular}
-\end{table}
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
@@ -392,25 +352,6 @@ F1 score for test set    &     0.713 & 0.738 & 0.738 \\
 \end{tabular}
 \label{svmTable}
 \end{table}
-
-\setlength{\extrarowheight}{1.5pt}
-\begin{table}[!htbp]
-\caption{\textbf{SVMs} - Confusion Matrix} %title of the table
-\centering % centering table
-\begin{tabular}{ |l|l|p{3cm}|p{3cm}| }
-\hline % inserts single-line
-\multirow{2}{*}{} & & \multicolumn{2}{c|}{Actual Class} \\ 
-\cline{3-4}
-\multirow{2}{*}{} & & Passed & Fail \\ 
-\hline
-\multirow{2}{1.5in}{Predicted Class} & Passed & 13.000 & 20.000 \\ 
-%\cline{2-2}
- & Fail & 14.000 & 48.000  \\ \hline
-\end{tabular}
-\end{table}
-
-
-
 
 
 \end{document}  
