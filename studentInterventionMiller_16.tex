@@ -98,6 +98,9 @@ showstringspaces=false            %
 % Python for inline
 \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
+% vector
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
 %----------------------------------------------------------------------------------------
 %  TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -145,7 +148,7 @@ For the student intervention challenge, three supervised learning algorithms hav
 
 
 
-\subsection*{Required:}
+\subsection*{Training and Evaluating Models: Required:}
 \begin{itemize} 
 
 \item Please give some general applications (industry applications, what are they?) of Decision Trees.
@@ -277,7 +280,15 @@ The general approach is to try a few different algorithms for each problem. Sci-
 
 %----------------------------------------------------------------------------------------
 
-\section*{Best Model}
+\section*{Choosing the Best Model}
+
+\subsection*{Required:}
+\begin{itemize} 
+
+\item Please thoroughly compare the F1 scores and computation costs of each model with each other model.
+Well done using accuracy to choose SVMs, however. Please make your comparison more thorough, and include Decision Trees in your comparison.
+\end{itemize}
+
 \paragraph{\textbf{Question}} Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
 \begin{figure}[!htbp]
@@ -297,7 +308,21 @@ While its marginally slower in prediction than Random Forest classifier with a p
 
 \paragraph{\textbf{Question}} In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
 
-\paragraph{\textbf{Answer}} A Support Vector Machine is a class of discriminatory algorithms. The goal is to try and correctly classify a dataset into separate classes. Subject to that constraint, an SVM  picks a decision boundary that separates the classes by maximizing the distance to the nearest points in either classes. These points are a subset of the dataset and are called support vectors. An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorith,.
+\paragraph{\textbf{Answer}} A Support Vector Machine is a class of discriminatory algorithms. The goal is to try and correctly classify a dataset into separate classes. Subject to that constraint, an SVM  picks a decision boundary that separates the classes by maximizing the distance to the nearest points in either classes. These points are a subset of the dataset and are called support vectors. An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorithm.
+
+
+\begin{figure}[!hbtp]
+\centering
+    \subfloat[Features in two dimensional space.]{%
+    \includegraphics[width=0.5\textwidth]{images/SVMNonlinear1}
+    \label{SVMNonlinear1}}
+    \subfloat[Features projected in three dimensional space.]{%
+    \includegraphics[width=0.5\textwidth]{images/SVMNonlinear2}
+    \label{SVMNonlinear2}}
+    \caption{\textbf{Kernel trick.} \textit{Figure (a) shows data given by two features $\vec{x} = \{x_1,x_2\}$. Figure (b) shows the same data mapped to z by $\vec{x} = \{x_1,x_2\} \longrightarrow \vec{z} = \{x_1^2, \sqrt2x_1x_2, x_2^2 \}$. By mapping the data from two dimensions to three dimension, the data now becomes linearly separable in the new representation.}}
+\end{figure}
+
+The \textit{kernel} trick of SVMs make linear models work in nonlinear settings by mapping the data into higher dimension where we can see the linear behavior. For example, the figure in \ref{SVMNonlinear1} shows a features in two-dimensional space where it is evident we will not be able to find a decision boundary that separates the data into two classes. Using a kernel, the features are projected into a three dimension space as is shown in figure \ref{SVMNonlinear2} where we can find a hyperplane that will linearly separate the data into two classes.
 
 
 \paragraph{\textbf{Question}} Fine-tune the model. What is the model's final F1 score?
