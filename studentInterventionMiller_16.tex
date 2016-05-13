@@ -200,12 +200,13 @@ The theoretical time \& space complexity for building a complete unpruned decisi
 \item Worst Case: $O(MK\widetilde{N}^2\log \widetilde{N})$ 
 \item Average Case: $\Theta(MK\widetilde{N}\log^2 \widetilde{N})$
 \end{itemize}
-Where $M$ denotes number of randomized trees, $N$ the number of samples, $p$ the number of input variables and $K$ the number of variables randomly drawn at each node. $\widetilde{N} = 0.632 N$, due to the fact that bootstrap samples draw, on average, $63.2\%$ of unique samples. 
+Where $M$ denotes number of randomized trees, $N$ the number of samples, and $K$ the number of variables randomly drawn at each node. $\widetilde{N} = 0.632 N$, due to the fact that bootstrap samples draw, on average, $63.2\%$ of unique samples. 
 \footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
 
 \item What are the general applications of this model?\\
-Ensemble learners are used in supervised learning. The goal of the random forest classifier is to combine the results of multiple classifiers, it is an ensemble of decision trees. The prediction of the classifier is the averaged prediction of the individual classifiers. 
-What are its strengths and weaknesses?\\
+Ensemble learners are used in supervised learning. The goal of the random forest classifier is to combine the results of multiple classifiers, yielding an ensemble of decision trees. The prediction of the classifier is the averaged prediction of the individual classifiers.
+
+\item What are its strengths and weaknesses?\\
 \begin{itemize}[noitemsep,nolistsep]
        \item Strenghts of SVMs:
               \begin{itemize}[noitemsep,nolistsep]
@@ -239,7 +240,7 @@ The theoretical time \& space complexity of SVMs is:
 \item Average Case: $\Theta(pN^2)$
 \end{itemize}
 Where $N$ denotes the number of samples, and $p$ the number of input variables. 
-Its a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors.
+It can be a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors. Even though the algorithm spends more time in the training, however, it achieves better $ F_1$ score for prediction – thus it is more accurate.
 
 \item What are the general applications of this model?\\ 
 SVMs are an algorithm used for classification, regression and outlier detection.\\
@@ -267,19 +268,44 @@ The general approach is to try a few different algorithms for each problem. Sci-
 %----------------------------------------------------------------------------------------
 
 \section*{Best Model}
-Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
+\paragraph{\textbf{Question}} Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
 \begin{figure}[!htbp]
   \centering
     \includegraphics[width=0.5\textwidth]{images/y_all}
   %
 \caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of (0) and over 250 values of (1).}}
+\label{y_all}
 \end{figure}
 
 
-For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Decision Tree Classifier}. First, it is a relatively fast algorithm to train and predict. 
+\paragraph{\textbf{Answer}} For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Support Vector Machine}. First, it is a relatively fast algorithm to train and predict. 
+Second, as we can see from figure \ref{y_all}, the dataset is quite unbalanced (number of passed students $>>$ number of failed students) a relatively small. The SVM algorithm is able to handle this better than the other two models. 
 
-Second, it is important to note what we are trying to do here. We are trying to identify students who need intervention, students who left to their own devices will \textbf{not} pass the class. Given our task, as we can see from, the cost of \textbf{false positive} are higher in comparison to misidentifying students who actually are fine. Consequently, the ideal model we should optimize for is the one with the lowest number of false positives, i.e., highest recall. As we can see from table \ref{scoresTable}, that also happens to be the Decision Tree Classifier. 
+While its marginally slower in prediction than Random Forest classifier with a prediction time of 0.001 versus 0.006 as can be seen from tables \ref{randomForestClassifierTable} and \ref{svmTable}. The difference of negligible and SVM makes up for what it loses in speed with improvement in accuracy.
+
+
+\paragraph{\textbf{Question}} In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
+
+\paragraph{\textbf{Answer}} A Support Vector Machine makes predictions by 
+
+\paragraph{\textbf{Question}} Fine-tune the model. What is the model's final F1 score?
+
+\setlength{\extrarowheight}{1.5pt}
+\begin{table}[!htbp]
+\caption{Result of tuning with \textbf{GridSearchCV}} %title of the table
+\centering % centering table
+\begin{tabular}{|p{4cm}||p{4cm}|} % creating four columns
+\hline % inserts single-line
+& GridSearchCV\\[0.5ex]
+\hline % inserts single-line
+
+F1 score for training set     &1.000\\
+F1 score for test set         &0.803\\
+\hline % inserts single-line
+\end{tabular}
+\label{tunedGridSearch}
+\end{table}
 
 
 
@@ -303,10 +329,11 @@ Second, it is important to note what we are trying to do here. We are trying to 
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)   &       0.001 & 0.001 & 0.002 \\
-Prediction time (secs)   &     0.000 & 0.000 & 0.000 \\
-F1 score for training set  &   1.000 & 1.000 & 1.000 \\
-F1 score for test set    &     0.737 & 0.775 & 0.690 \\
+Training time (secs)          &0.001&0.001&0.002\\
+Prediction time (secs)        &0.000&0.000&0.000\\
+F1 score for training set     &1.000&1.000&1.000\\
+F1 score for test set         &0.746&0.649&0.720\\
+
 \hline % inserts single-line
 \end{tabular}
 \label{decisionTreeTable}
@@ -323,10 +350,10 @@ F1 score for test set    &     0.737 & 0.775 & 0.690 \\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)   &       0.361 & 0.370 & 0.387 \\
-Prediction time (secs)   &     0.011 & 0.011 & 0.012 \\
-F1 score for training set  &   1.000 & 1.000 & 1.000 \\
-F1 score for test set    &     0.805 & 0.814 & 0.783 \\
+Training time (secs)          &0.031&0.030&0.026\\
+Prediction time (secs)        &0.001&0.001&0.001\\
+F1 score for training set     &0.994&1.000&0.988\\
+F1 score for test set         &0.701&0.744&0.713\\
 \hline % inserts single-line
 \end{tabular}
 \label{randomForestClassifierTable}
@@ -344,10 +371,10 @@ F1 score for test set    &     0.805 & 0.814 & 0.783 \\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)   &       0.005 & 0.018 & 0.025 \\
-Prediction time (secs)   &     0.000 & 0.001 & 0.001 \\
-F1 score for training set  &   0.916 & 0.826 & 0.851 \\
-F1 score for test set    &     0.713 & 0.738 & 0.738 \\
+Training time (secs)          &0.001&0.003&0.006\\
+Prediction time (secs)        &0.001&0.001&0.002\\
+F1 score for training set     &0.886&0.879&0.877\\
+F1 score for test set         &0.782&0.754&0.752\\
 \hline % inserts single-line
 \end{tabular}
 \label{svmTable}
