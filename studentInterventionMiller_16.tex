@@ -248,10 +248,10 @@ What are its strengths and weaknesses?
 \begin{itemize}
        \item Strenghts of SVMs:
               \begin{itemize}[noitemsep,nolistsep]
+                     \item Versatile: utilizes \textbf{kernel} transformation and several functional forms so that what was once non-linearly separable now becomes linearly separable.
                      \item Effective in high dimensional spaces.
                      \item Still effective in cases where number of dimensions is greater than the number of samples.
                      \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-                     \item Versatile: utilizes kernel transformation and several functional forms so can be applied to nonlinear data.
               \end{itemize}
        \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
@@ -287,7 +287,8 @@ While its marginally slower in prediction than Random Forest classifier with a p
 
 \paragraph{\textbf{Question}} In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
 
-\paragraph{\textbf{Answer}} A Support Vector Machine makes predictions by 
+\paragraph{\textbf{Answer}} A Support Vector Machine is a class of discriminatory algorithms. The goal is to try and correctly classify a dataset into separate classes. Subject to that constraint, an SVM  picks a decision boundary that separates the classes by maximizing the distance to the nearest points in either classes. These points are a subset of the dataset and are called support vectors. An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorith,.
+
 
 \paragraph{\textbf{Question}} Fine-tune the model. What is the model's final F1 score?
 
