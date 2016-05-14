@@ -308,7 +308,7 @@ While its marginally slower in prediction than Random Forest classifier with a p
 
 \paragraph{\textbf{Question}} In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
 
-\paragraph{\textbf{Answer}} A Support Vector Machine is a class of discriminatory algorithms. The goal is to try and correctly classify a dataset into separate classes. Subject to that constraint, an SVM  picks a decision boundary that separates the classes by maximizing the distance to the nearest points in either classes. These points are a subset of the dataset and are called support vectors. An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorithm.
+\paragraph{\textbf{Answer}} A Support Vector Machine is a class of discriminatory algorithms. The goal is to try and correctly classify a dataset into separate classes. Subject to that constraint, an SVM  picks a decision boundary that separates the classes by maximizing the distance to the nearest points in either classes. These points are a subset of the dataset and are called support vectors. 
 
 
 \begin{figure}[!hbtp]
@@ -319,10 +319,12 @@ While its marginally slower in prediction than Random Forest classifier with a p
     \subfloat[Features projected in three dimensional space.]{%
     \includegraphics[width=0.5\textwidth]{images/SVMNonlinear2}
     \label{SVMNonlinear2}}
-    \caption{\textbf{Kernel trick.} \textit{Figure (a) shows data given by two features $\vec{x} = \{x_1,x_2\}$. Figure (b) shows the same data mapped to z by $\vec{x} = \{x_1,x_2\} \longrightarrow \vec{z} = \{x_1^2, \sqrt2x_1x_2, x_2^2 \}$. By mapping the data from two dimensions to three dimension, the data now becomes linearly separable in the new representation.}}
+    \caption{\textbf{Kernel trick.} \textit{Figure (a) $\vec{x} = \{x_1,x_2\}$. Figure (b) $\vec{z}$ by $\vec{x} = \{x_1,x_2\} \longrightarrow \vec{z} = \{x_1^2, \sqrt2x_1x_2, x_2^2 \}$. By mapping the data from two dimensions to three dimension, the data now becomes linearly separable in the new representation.}}
 \end{figure}
 
-The \textit{kernel} trick of SVMs make linear models work in nonlinear settings by mapping the data into higher dimension where we can see the linear behavior. For example, the figure in \ref{SVMNonlinear1} shows a features in two-dimensional space where it is evident we will not be able to find a decision boundary that separates the data into two classes. Using a kernel, the features are projected into a three dimension space as is shown in figure \ref{SVMNonlinear2} where we can find a hyperplane that will linearly separate the data into two classes.
+The most interesting thing about SVMs is what is know as the \textit{kernel} trick. This procedure make linear models work in nonlinear settings by mapping the data into higher dimensions where we can see the linear behavior. For example, the figure in \ref{SVMNonlinear1} shows a data in two-dimensional space where it is evident we will not be able to find a decision boundary that separates it into two classes. Using a kernel, the features are projected into a three dimension space as is shown in figure \ref{SVMNonlinear2} where we can find a hyperplane that will linearly separate the data into two classes. This aspect of SVMs is what makes them really robust.
+
+An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorithm.
 
 
 \paragraph{\textbf{Question}} Fine-tune the model. What is the model's final F1 score?
