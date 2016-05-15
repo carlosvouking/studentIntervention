@@ -137,6 +137,14 @@ Your goal is to identify students who might need early intervention - which type
 This task sounds like a problem that would be best suited for a classification algorithm. The inherent task is to develop learners that can "predicting a category." If we look at the problem from another perspective, we can consider the student data available as a ``labeled'' dataset. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\pythoninline{passed}' column as our class label. Therefore, this is a binary classification problem for predicting discrete labels that a student might belong to.
 \end{itemize}
 
+\begin{figure}[!htbp]
+  \centering
+    \includegraphics[width=0.5\textwidth]{images/y_all}
+  %
+\caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of (0) and over 250 values of (1).}}
+\label{y_all}
+\end{figure}
+
 
 \section*{Models}
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
@@ -148,7 +156,7 @@ For the student intervention challenge, three supervised learning algorithms hav
 
 
 
-\subsection*{Training and Evaluating Models: Required:}
+\subsection*{Required: Training and Evaluating Models:}
 \begin{itemize} 
 
 \item Please give some general applications (industry applications, what are they?) of Decision Trees.
@@ -291,13 +299,6 @@ Well done using accuracy to choose SVMs, however. Please make your comparison mo
 
 \paragraph{\textbf{Question}} Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
-\begin{figure}[!htbp]
-  \centering
-    \includegraphics[width=0.5\textwidth]{images/y_all}
-  %
-\caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of (0) and over 250 values of (1).}}
-\label{y_all}
-\end{figure}
 
 
 \paragraph{\textbf{Answer}} For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Support Vector Machine}. First, it is a relatively fast algorithm to train and predict. 
@@ -322,12 +323,25 @@ While its marginally slower in prediction than Random Forest classifier with a p
     \caption{\textbf{Kernel trick.} \textit{Figure (a) $\vec{x} = \{x_1,x_2\}$. Figure (b) $\vec{z}$ by $\vec{x} = \{x_1,x_2\} \longrightarrow \vec{z} = \{x_1^2, \sqrt2x_1x_2, x_2^2 \}$. By mapping the data from two dimensions to three dimension, the data now becomes linearly separable in the new representation.}}
 \end{figure}
 
-The most interesting thing about SVMs is what is know as the \textit{kernel} trick. This procedure make linear models work in nonlinear settings by mapping the data into higher dimensions where we can see the linear behavior. For example, the figure in \ref{SVMNonlinear1} shows a data in two-dimensional space where it is evident we will not be able to find a decision boundary that separates it into two classes. Using a kernel, the features are projected into a three dimension space as is shown in figure \ref{SVMNonlinear2} where we can find a hyperplane that will linearly separate the data into two classes. This aspect of SVMs is what makes them really robust.
+The most interesting thing about SVMs is what is know as the \textit{kernel} trick. This procedure make linear models work in nonlinear settings by mapping the data into higher dimensions where we can see the linear behavior. For example, figure \ref{SVMNonlinear1} shows a data in two-dimensional space where it is evident we will not be able to find a decision boundary that separates the data into two classes. Using a kernel, the features are projected into a three dimension space as is shown in figure \ref{SVMNonlinear2}. In this space, we can find a hyperplane that will linearly separate the data into two classes. This aspect of SVMs is what makes them really robust.
 
 An SVM does prediction on the data by classifying the test dataset based on the decision boundary it ``fitted'' during its training phase. There are several evaluation metrics that let you determine the accuracy of the algorithm.
 
 
-\paragraph{\textbf{Question}} Fine-tune the model. What is the model's final F1 score?
+\paragraph{\textbf{Question}} Fine-tune the model. What is the model's final $F_1$ score?
+\paragraph{\textbf{Answer}} As it is often done in practical machine learning, we try several kernels first, often the linear kernel, then the RBF kernel. Using the linear kernel, the $C$ hyper-parameter was tuned with the following values: $ \{0.03125, 0.0625, 0.125 , 0.25, 0.5, 1.0, 2.0 \}$.
+
+
+\begin{figure}[!htbp]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/C_Hyperparameter}
+  %
+\caption{\textbf{Values of $F_1$ scores for different values of $C$.} \textit{From this figure, we can see that we achieve the highest value of $F_1$ where $C$ = 0.125}}
+\label{y_all}
+\end{figure}
+
+
+
 
 \setlength{\extrarowheight}{1.5pt}
 \begin{table}[!htbp]
@@ -338,8 +352,15 @@ An SVM does prediction on the data by classifying the test dataset based on the 
 & GridSearchCV\\[0.5ex]
 \hline % inserts single-line
 
-F1 score for training set     &1.000\\
-F1 score for test set         &0.803\\
+F1 score for training set     &0.848\\
+F1 score for test set         &0.800\\
+
+\hline % inserts single-line 
+& Best Parameters \\[1ex]
+\hline % inserts single-line
+
+Kernel & Linear\\
+$C$ & 0.125\\
 \hline % inserts single-line
 \end{tabular}
 \label{tunedGridSearch}
@@ -367,10 +388,10 @@ F1 score for test set         &0.803\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.001&0.001&0.002\\
-Prediction time (secs)        &0.000&0.000&0.000\\
-F1 score for training set     &1.000&1.000&1.000\\
-F1 score for test set         &0.746&0.649&0.720\\
+Training time (secs)          &0.001 &0.001 &0.002\\
+Prediction time (secs)        &0.000 &0.000 &0.000\\
+F1 score for training set     &1.000 &1.000 &1.000\\
+F1 score for test set         &0.610 &0.750 &0.633\\
 
 \hline % inserts single-line
 \end{tabular}
@@ -388,10 +409,10 @@ F1 score for test set         &0.746&0.649&0.720\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.031&0.030&0.026\\
-Prediction time (secs)        &0.001&0.001&0.001\\
-F1 score for training set     &0.994&1.000&0.988\\
-F1 score for test set         &0.701&0.744&0.713\\
+Training time (secs)          &0.019 &0.019 &0.019\\
+Prediction time (secs)        &0.001 &0.001 &0.001\\
+F1 score for training set     &1.000 &0.993 &0.990\\
+F1 score for test set         &0.716 &0.726 &0.746\\
 \hline % inserts single-line
 \end{tabular}
 \label{randomForestClassifierTable}
@@ -409,10 +430,10 @@ F1 score for test set         &0.701&0.744&0.713\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.001&0.003&0.006\\
-Prediction time (secs)        &0.001&0.001&0.002\\
-F1 score for training set     &0.886&0.879&0.877\\
-F1 score for test set         &0.782&0.754&0.752\\
+Training time (secs)          &0.001 &0.003 &0.006\\
+Prediction time (secs)        &0.001 &0.001 &0.002\\
+F1 score for training set     &0.878 &0.868 &0.876\\
+F1 score for test set         &0.775 &0.781 &0.784\\
 \hline % inserts single-line
 \end{tabular}
 \label{svmTable}
