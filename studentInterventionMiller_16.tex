@@ -146,7 +146,7 @@ This task sounds like a problem that would be best suited for a classification a
 \end{figure}
 
 
-\section*{Models}
+\section*{Training and Evaluating Models}
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
 \begin{enumerate}[noitemsep,nolistsep]
 \item Decision Tree Classifier
@@ -155,16 +155,6 @@ For the student intervention challenge, three supervised learning algorithms hav
 \end{enumerate}
 
 
-
-\subsection*{Required: Training and Evaluating Models:}
-\begin{itemize} 
-
-\item Please give some general applications (industry applications, what are they?) of Decision Trees.
-Cheap time complexity is a good reason for choosing to explore this model, but you may want to choose a reason based on what you know about the dataset.
-\item Please give a general application (or industry application) of Random Forest Classifier.
-\item The question states "Given what you know about the data so far, why did you choose this model to apply?" Your justification of choice for Random Forests should be based on an attribute of the dataset, so please update it.
-\item Well done giving information about SVMs. You might want to elaborate on the general applications (or industry applications) of SVMs.
-\end{itemize}
 
 %-------------------------------DECISION TREE CLASSIFIER----------------------------------%
 
@@ -180,7 +170,7 @@ The theoretical time \& space complexity of decision trees classifiers as implem
 Where $N$ denotes the number of samples, and $p$ the number of input variables. \footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
 
 \item What are the general applications of this model?\\
-The decision tree algorithm is usually applied to classification and regression problems.\\
+The decision tree algorithm is usually applied to classification and regression problems. They are very popular in operations research, especially for building decision support systems. \\
 What are its strengths and weaknesses?\\  
        \begin{itemize}
        \item Strengths of decision trees:
@@ -203,8 +193,8 @@ What are its strengths and weaknesses?\\
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
-The decision tree classifier was chosen because of its ease of use and its relatively cheap time complexity.\\
-Another \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it isn't just satisfactory to identify students that need intervention, what learning researchers ultimately want is to gain \textit{insights} into the nature of learning, and the social factors that lead to certain outcomes for at-risk students. A decision tree learner, with its ability to graphically plot out the tree becomes a research tool in the hands of learning scientist. Consequently, this can help the school board of supervisors build better solutions for those students which well executed could potentially reduce the costs associated with remediating failed students.
+The \textit{major} reason why the decision tree classifier was selected was its interpretability. For this problem domain, it isn't just satisfactory to identify students that need intervention, what learning researchers ultimately want is to gain \textit{insights} into the nature of learning, and the social factors that lead to certain outcomes for at-risk students. A decision tree learner, with its ability to graphically plot out the tree becomes a research tool in the hands of learning scientists. Consequently, this can help the school board of supervisors build better solutions for those students which well executed could potentially reduce the costs associated with remediating failed students.\\
+
 \end{itemize} 
 
 
@@ -225,7 +215,7 @@ Where $M$ denotes number of randomized trees, $N$ the number of samples, and $K$
 \footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
 
 \item What are the general applications of this model?\\
-Ensemble learners are used in supervised learning. The goal of the random forest classifier is to combine the results of multiple classifiers, yielding an ensemble of decision trees. The prediction of the classifier is the averaged prediction of the individual classifiers.
+Ensemble learners are used in supervised learning. They have multiple applications. They have been used in bioinformatics for example to classify micro-array data, they have been used in engineering to solve aircraft engine fault diagnosis, they are used in education data mining to build student intervention systems and so forth.\\
 
 \item What are its strengths and weaknesses?\\
 \begin{itemize}[noitemsep,nolistsep]
@@ -244,6 +234,8 @@ Ensemble learners are used in supervised learning. The goal of the random forest
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
+From a cursory
+
 This learners was chosen as a means of reducing the effects of overfitting of decision trees.
 \end{itemize} 
 
@@ -264,7 +256,7 @@ Where $N$ denotes the number of samples, and $p$ the number of input variables.
 It can be a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors. Even though the algorithm spends more time in the training, however, it achieves better $ F_1$ score for prediction – thus it is more accurate.
 
 \item What are the general applications of this model?\\ 
-SVMs are an algorithm used for classification, regression and outlier detection.\\
+SVMs are an algorithm used for classification, regression and outlier detection. They are popular in bioinformatics for protein classification. They are also frequently used in text and hypertext classification. \\
 What are its strengths and weaknesses?
 \begin{itemize}
        \item Strenghts of SVMs:
@@ -283,7 +275,8 @@ What are its strengths and weaknesses?
        \end{itemize}
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
-The general approach is to try a few different algorithms for each problem. Sci-kit learn provides a guide to choosing estimators. Based on the guide, and our task satisfying the following criteria: {100K \textgreater samples \textgreater 50, goal of predicting a category \& availability of labeled data}, a linear SVC was selected. 
+One of the more interesting aspect of this dataset is that it is unbalanced. As previously stated, and can be seen from figure \ref{y_all} there are more examples of student success than failure. As such, the optimal learner for this problem is one that can still generate reasonable classification given the unbalanced dataset. SVMs are very very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. The solution is to assign a different soft-margin constant to each class.
+
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
