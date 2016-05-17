@@ -320,7 +320,7 @@ An SVM does prediction on the data by classifying the test dataset based on the 
 
 
 \paragraph{\textbf{Question}} Fine-tune the model. What is the model's final $F_1$ score?
-\paragraph{\textbf{Answer}} As it is often done in practical machine learning, we try several kernels first, often the linear kernel, then the RBF kernel. Using the linear kernel, the $C$ hyper-parameter was tuned with the following values: $ \{0.03125, 0.0625, 0.125 , 0.25, 0.5, 1.0, 2.0 \}$. Figure \ref{tunedC} shows the results of trying various $C$ with gridsearch. 
+\paragraph{\textbf{Answer}} As it is often done in practical machine learning, we try several kernels first, often the linear kernel, then the RBF kernel. Using the linear kernel, the $C$ hyper-parameter was tuned with the following values: $ \{2^{-5}, 2^{-4}, 2^{-3}, 2^{-2}, 2^{-1}, 2^{-0}, 2^{1} \}$. Figure \ref{tunedC} shows the results of trying various $C$ with gridsearch. 
 
 
 \begin{figure}[!htbp]
