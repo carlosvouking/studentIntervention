@@ -141,7 +141,7 @@ This task sounds like a problem that would be best suited for a classification a
   \centering
     \includegraphics[width=0.5\textwidth]{images/y_all}
   %
-\caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of (0) and over 250 values of (1).}}
+\caption{\textbf{Values of `passed' column} \textit{The histograms shows an unbalanced target dataset with approximately 125 values of \{0 - did not pass\} and over 250 values of \{1 - passed\}.}}
 \label{y_all}
 \end{figure}
 
@@ -177,7 +177,7 @@ What are its strengths and weaknesses?\\
               \begin{itemize}[noitemsep,nolistsep]
                      \item Very intuitive. You can look at the results and understand it. 
                      \item Requires little data preparation. 
-                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pN\log^2 N)$
+                     \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pN\log^2 N)$.
                      \item Able to handle both numerical and categorical data.
                      \item Very robust. Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
               \end{itemize}
@@ -215,20 +215,20 @@ Where $M$ denotes number of randomized trees, $N$ the number of samples, and $K$
 \footnote{Complexity analysis gotten from Louppe, Gilles PhD dissertation \textit{Understanding Random Forests: From Theory to Practice}, 2014.}
 
 \item What are the general applications of this model?\\
-Ensemble learners are used in supervised learning. They have multiple applications. They have been used in bioinformatics for example to classify micro-array data, they have been used in engineering to solve aircraft engine fault diagnosis, they are used in education data mining to build student intervention systems and so forth.\\
+Ensemble learners are used in supervised learning. They have multiple applications. They have been used in bioinformatics for example to classify micro-array data, they have been used in engineering to solve aircraft engine fault diagnosis, they have also been used for human pose detection in the Microsoft Kinect amongst other things. \\ 
 
 \item What are its strengths and weaknesses?\\
 \begin{itemize}[noitemsep,nolistsep]
        \item Strenghts of SVMs:
               \begin{itemize}[noitemsep,nolistsep]
                      \item Considered one of the best off-the-shelf learning algorithm, requires almost no tuning. 
-                     \item Fast to train because algorithm lends itself well to parallelization
-                     \item Flexible, can be used with large number of attributes, small or large datasets
+                     \item Fast to train because algorithm lends itself well to parallelization.
+                     \item Flexible, can be used with large number of attributes, small or large datasets.
                      \item Good control of bias and variance because of the averaging and randomization which leads to better performance.
               \end{itemize}
        \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
-                     \item Loss of interpretability as compared to decision trees give.
+                     \item Loss of interpretability as compared to decision trees.
               \end{itemize}
        \end{itemize}
 
@@ -275,7 +275,7 @@ What are its strengths and weaknesses?
        \end{itemize}
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
-One of the more interesting aspect of this dataset is that it is unbalanced. As previously stated, and can be seen from figure \ref{y_all} there are more examples of student success than failure. As such, the optimal learner for this problem is one that can still generate reasonable classification given the unbalanced dataset. SVMs are very very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. The solution is to assign a different soft-margin constant to each class.
+One of the more interesting aspect of this dataset is that it is unbalanced. As previously stated, and can be seen from figure \ref{y_all}, there are more examples of student success than failure. As such, the optimal learner for this problem is one that can still generate reasonable classification given the unbalanced dataset. SVMs are very very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. The solution is to assign a different soft-margin constant to each class.
 
 \end{itemize}
 
@@ -322,7 +322,7 @@ An SVM does prediction on the data by classifying the test dataset based on the 
 
 
 \paragraph{\textbf{Question}} Fine-tune the model. What is the model's final $F_1$ score?
-\paragraph{\textbf{Answer}} As it is often done in practical machine learning, we try several kernels first, often the linear kernel, then the RBF kernel. Using the linear kernel, the $C$ hyper-parameter was tuned with the following values: $ \{0.03125, 0.0625, 0.125 , 0.25, 0.5, 1.0, 2.0 \}$.
+\paragraph{\textbf{Answer}} As it is often done in practical machine learning, we try several kernels first, often the linear kernel, then the RBF kernel. Using the linear kernel, the $C$ hyper-parameter was tuned with the following values: $ \{0.03125, 0.0625, 0.125 , 0.25, 0.5, 1.0, 2.0 \}$. Figure \ref{tunedC} shows the results of trying various $C$ with gridsearch. 
 
 
 \begin{figure}[!htbp]
@@ -330,7 +330,7 @@ An SVM does prediction on the data by classifying the test dataset based on the 
     \includegraphics[width=0.8\textwidth]{images/C_Hyperparameter}
   %
 \caption{\textbf{Values of $F_1$ scores for different values of $C$.} \textit{From this figure, we can see that we achieve the highest value of $F_1$ where $C$ = 0.125}}
-\label{y_all}
+\label{tunedC}
 \end{figure}
 
 
