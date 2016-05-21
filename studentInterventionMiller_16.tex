@@ -327,7 +327,7 @@ An SVM does prediction on the data by classifying the test dataset based on the 
   \centering
     \includegraphics[width=0.8\textwidth]{images/C_Hyperparameter}
   %
-\caption{\textbf{Values of $F_1$ scores for different values of $C$.} \textit{From this figure, we can see that we achieve the highest value of $F_1$ where $C$ = 0.125}}
+\caption{\textbf{Values of $F_1$ scores for different values of $C$.} \textit{From this figure, we can see that we achieve the highest value of $F_1$ where $C$ = 0.03125}}
 \label{tunedC}
 \end{figure}
 
@@ -343,15 +343,15 @@ An SVM does prediction on the data by classifying the test dataset based on the 
 & GridSearchCV\\[0.5ex]
 \hline % inserts single-line
 
-F1 score for training set     &0.848\\
-F1 score for test set         &0.800\\
+F1 score for training set     &0.831\\
+F1 score for test set         &0.795\\
 
 \hline % inserts single-line 
 & Best Parameters \\[1ex]
 \hline % inserts single-line
 
 Kernel & Linear\\
-$C$ & 0.125\\
+$C$ & 0.03125\\
 \hline % inserts single-line
 \end{tabular}
 \label{tunedGridSearch}
@@ -379,10 +379,10 @@ $C$ & 0.125\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.001 &0.001 &0.002\\
-Prediction time (secs)        &0.000 &0.000 &0.000\\
-F1 score for training set     &1.000 &1.000 &1.000\\
-F1 score for test set         &0.610 &0.750 &0.633\\
+Training time (secs)          &  0.001&  0.001&  0.002\\ 
+Prediction time (secs)        &  0.000&  0.000&  0.000\\ 
+F1 score for training set     &  1.000&  1.000&  1.000\\ 
+F1 score for test set         &  0.603&  0.716&  0.672\\
 
 \hline % inserts single-line
 \end{tabular}
@@ -400,10 +400,10 @@ F1 score for test set         &0.610 &0.750 &0.633\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.019 &0.019 &0.019\\
-Prediction time (secs)        &0.001 &0.001 &0.001\\
-F1 score for training set     &1.000 &0.993 &0.990\\
-F1 score for test set         &0.716 &0.726 &0.746\\
+Training time (secs)          &  0.034&  0.037&  0.020\\ 
+Prediction time (secs)        &  0.003&  0.001&  0.001\\ 
+F1 score for training set     &  1.000&  0.996&  0.995\\ 
+F1 score for test set         &  0.740&  0.818&  0.756\\ 
 \hline % inserts single-line
 \end{tabular}
 \label{randomForestClassifierTable}
@@ -421,10 +421,10 @@ F1 score for test set         &0.716 &0.726 &0.746\\
 & 100 & 200 & 300\\[0.5ex]
 \hline % inserts single-line
 
-Training time (secs)          &0.001 &0.003 &0.006\\
-Prediction time (secs)        &0.001 &0.001 &0.002\\
-F1 score for training set     &0.878 &0.868 &0.876\\
-F1 score for test set         &0.775 &0.781 &0.784\\
+Training time (secs)          &  0.001&  0.004&  0.008\\ 
+Prediction time (secs)        &  0.001&  0.001&  0.002\\ 
+F1 score for training set     &  0.878&  0.868&  0.876\\ 
+F1 score for test set         &  0.775&  0.781&  0.784\\
 \hline % inserts single-line
 \end{tabular}
 \label{svmTable}
