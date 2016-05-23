@@ -266,7 +266,7 @@ The theoretical time \& space complexity of SVMs is:
 \item Average Case: $\Theta(pN^2)$
 \end{itemize}
 Where $N$ denotes the number of samples, and $p$ the number of input variables. 
-It can be a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors. Even though the algorithm spends more time in the training, however, it achieves better $ F_1$ score for prediction – thus it is more accurate.
+It can be a costly algorithm since the compute and storage requirements increase rapidly with the number of training vectors. Even though the algorithm spends more time in training, however, it achieves better $ F_1$ score for prediction as can be seen in table \ref{svmTable} – thus it is more accurate.
 
 \item What are the general applications of this model?\\ 
 SVMs are an algorithm used for classification, regression and outlier detection. They are popular in bioinformatics for protein classification. They are also frequently used in text and hypertext classification. \\
@@ -281,7 +281,7 @@ What are its strengths and weaknesses?
               \end{itemize}
        \item Weaknesses of decision trees:
               \begin{itemize}[noitemsep,nolistsep]
-                     \item If the number of features is much greater than the number of samples, the method is likely to give poor performances.
+                     \item If the number of features is much greater than the number of samples, the method is likely to give poor performance.
                      \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
                      \item SVM is a binary classifier. To do a multi-class classification, only pair-wise classifications can be used (one class against all others, for all classes).
               \end{itemize}
@@ -296,21 +296,13 @@ One of the more interesting aspect of this dataset is that it is unbalanced. As 
 
 \section*{Choosing the Best Model}
 
-\subsection*{Required:}
-\begin{itemize} 
-
-\item Please thoroughly compare the F1 scores and computation costs of each model with each other model.
-Well done using accuracy to choose SVMs, however. Please make your comparison more thorough, and include Decision Trees in your comparison.
-\end{itemize}
-
 \paragraph{\textbf{Question}} Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
+\paragraph{\textbf{Answer}} In determining which model best fits the job for identifying students that need intervention, we start off by looking at the model that gives the best performance based on accuracy. Looking at our three tables---table \ref{decisionTreeTable}, table \ref{randomForestClassifierTable}, and table \ref{svmTable}---we can see that the learner that gives the best performance is the \textbf{Support Vector Machine}(SVM). This learner gives 11.2\% improvement over the Decision Tree model, as well as a 2.8\% performance improvement over the Random Forest model.
 
+From table \ref{decisionTreeTable}, we can see that the decisionTree classifier has over-fitted the training data, giving a $F_1$ of 1.00, even though it has the shortest training and prediction time. True to the ensemble methods claim of prevent over-fitting, the Random Forest classifier, doesn't over-fit the data and greatly improves its performance over the Decision tree model. However, it doesn't out compete an SVM for this problem.
 
-\paragraph{\textbf{Answer}} For the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Support Vector Machine}. First, it is a relatively fast algorithm to train and predict. 
-Second, as we can see from figure \ref{y_all}, the dataset is quite unbalanced (number of passed students $>>$ number of failed students) a relatively small. The SVM algorithm is able to handle this better than the other two models. 
-
-While its marginally slower in prediction than Random Forest classifier with a prediction time of 0.001 versus 0.006 as can be seen from tables \ref{randomForestClassifierTable} and \ref{svmTable}. The difference of negligible and SVM makes up for what it loses in speed with improvement in accuracy.
+In conclusion, for the problem of identifying students that need intervention, I would advice the board of supervisors to go with a \textbf{Support Vector Machine}. First, it is a relatively fast algorithm to train and predict. Second, as we can see from figure \ref{y_all}, the dataset is quite unbalanced (number of passed students $>>$ number of failed students) and relatively small. The SVM algorithm is able to handle this better than the other two models. This model does take the longest to train, but that is something the board will not be doing all the time. Instead, the board will need to constantly run the prediction algorithm. While its marginally slower in prediction than Random Forest classifier with a prediction time of 0.002 seconds versus 0.001 seconds as can be seen from tables \ref{randomForestClassifierTable} and \ref{svmTable}. The difference of negligible and SVM makes up for what it loses in speed with improvement in accuracy.
 
 
 \paragraph{\textbf{Question}} In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).
