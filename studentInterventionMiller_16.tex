@@ -234,7 +234,27 @@ Ensemble learners are used in supervised learning. They have multiple applicatio
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
-Based on the domain of the dataset, i.e., education and the task itself, identifying students that need intervention, I selected a Random Forest classifier as a potential model because they not only work well in discriminating the data, but these models also lend themselves well as a means of understanding variable importance, i.e., feature selection. Through feature selection, we can come to understand the variables that have the most impact in determining whether a student needs intervention or not.
+Based on the domain of the dataset, i.e., education and the task itself, identifying students that need intervention, I selected a Random Forest classifier as a potential model because they not only work well in discriminating the data, but these models also lend themselves well as a means of understanding variable importance, i.e., feature selection. Through feature selection, we can come to understand the variables that have the most impact in determining whether a student needs intervention or not.\\
+For example, I trained a Random Forest classifier on the student data, and used its `\pythoninline{feature_importances_}' function in SciKit learn to find the top 10 most important features in determining when a student needed intervention. Those features are listed below in order of importance : 
+
+[('absences'),
+('age'),
+ ('goout'),
+ ('failures'),
+ ('health'),
+ ('Medu'),
+ ('Walc'),
+ ('famrel'),
+ ('freetime'),
+ ('Fedu'),
+ ('studytime'),
+ ('Dalc'),
+ ('traveltime'),
+ ('higher'),
+ ('schoolsup'),
+ ('internet'),
+ ('activities')]
+
 \end{itemize} 
 
 
