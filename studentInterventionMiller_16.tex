@@ -140,7 +140,7 @@ For the student intervention challenge, three supervised learning algorithms hav
 
 %-------------------------------DECISION TREE CLASSIFIER----------------------------------%
 
-\subsection*{Decision Tree Classifier}
+\section*{Decision Tree Classifier}
 \begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
 The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is:
@@ -154,6 +154,8 @@ Where $N$ denotes the number of samples, and $p$ the number of input variables. 
 \item What are the general applications of this model?\\
 The decision tree algorithm is usually applied to classification and regression problems. They are very popular in operations research, especially for building decision support systems. \\
 What are its strengths and weaknesses?\\  
+
+\begin{remark}{Strengths and Weaknesses of Decision Tree Classifiers}
        \begin{itemize}
        \item Strengths of Decision Trees:
               \begin{itemize} 
@@ -172,6 +174,7 @@ What are its strengths and weaknesses?\\
                      \item Decision tree learners create biased trees if some classes dominate. 
               \end{itemize}
        \end{itemize}
+\end{remark}
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
@@ -184,7 +187,7 @@ The \textit{major} reason why the decision tree classifier was selected was its 
 
 %-----------------------------RANDOM FOREST CLASSIFIER---------------------------------------%
 
-\subsection*{Random Forest Classifier}
+\section*{Random Forest Classifier}
 \begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
 The theoretical time \& space complexity for building a complete unpruned decision tree is:
@@ -200,7 +203,8 @@ Where $M$ denotes number of randomized trees, $N$ the number of samples, and $K$
 Ensemble learners are used in supervised learning. They have multiple applications. They have been used in bioinformatics for example to classify micro-array data, they have been used in engineering to solve aircraft engine fault diagnosis, they have also been used for human pose detection in the Microsoft Kinect amongst other things. \\ 
 
 \item What are its strengths and weaknesses?\\
-\begin{itemize} 
+\begin{remark}{Strengths and Weaknesses of Random Forest Classifiers}
+  \begin{itemize} 
        \item Strenghts of Random Forest Classifiers:
               \begin{itemize} 
                      \item Considered one of the best off-the-shelf learning algorithm, requires almost no tuning. 
@@ -213,6 +217,7 @@ Ensemble learners are used in supervised learning. They have multiple applicatio
                      \item Loss of interpretability as compared to decision trees.
               \end{itemize}
        \end{itemize}
+  \end{remark}
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
@@ -238,7 +243,7 @@ For example, I trained a Random Forest classifier on the student data, and used 
 
 %-------------------------------------------S V M -----------------------------------------%
 
-\subsection*{Support Vector Machine (SVMs)}
+\section*{Support Vector Machine (SVMs)}
 \begin{itemize}
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
 The theoretical time \& space complexity of SVMs is:
@@ -253,6 +258,7 @@ It can be a costly algorithm since the compute and storage requirements increase
 \item What are the general applications of this model?\\ 
 SVMs are an algorithm used for classification, regression and outlier detection. They are popular in bioinformatics for protein classification. They are also frequently used in text and hypertext classification. \\
 What are its strengths and weaknesses?
+\begin{remark}{Strengths and Weaknesses of SVMs}
 \begin{itemize}
        \item Strenghts of SVMs:
               \begin{itemize} 
@@ -268,6 +274,7 @@ What are its strengths and weaknesses?
                      \item SVM is a binary classifier. To do a multi-class classification, only pair-wise classifications can be used (one class against all others, for all classes).
               \end{itemize}
        \end{itemize}
+\end{remark}
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
 One of the more interesting aspect of this dataset is that it is unbalanced. As previously stated, and can be seen from figure \ref{y_all}, there are more examples of student success than failure. As such, the optimal learner for this problem is one that can still generate reasonable classification given the unbalanced dataset. SVMs are very very robust classifiers and \textit{more importantly}, they have a method of \textit{biasing} the soft-margin constant, $C$, to correct for class imbalances. The solution is to assign a different soft-margin constant to each class.
