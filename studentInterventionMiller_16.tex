@@ -1,23 +1,64 @@
+\documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%
+               footinclude=true,cleardoublepage=empty,abstractoff,BCOR=5mm,%
+               paper=a4,fontsize=11pt,ngerman,american]{scrreprt}
 
-\documentclass[12pt]{article}
-\usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{amsmath}
-\usepackage{etoolbox}
-\usepackage{changepage}
-\usepackage{titlesec}
-\usepackage[parfill]{parskip}
-\usepackage[margin=1in]{geometry}
-\usepackage{times}
-\usepackage[numbers,super]{natbib}
-\usepackage{enumitem} %get rid of spaces in listed
+% Custom config ===============================================================
 
-\usepackage{hyperref}
-\hypersetup{%
-    colorlinks=true, 
-    citecolor=black,
-    linkcolor=blue,
-    urlcolor =cyan } 
+% Classic thesis
+\usepackage{amssymb}
+\input{classicthesis-config}
+
+% Theorems and definitions
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+
+\newtheorem{algorithm}{Algorithm}
+\usepackage{algpseudocode}
+
+% Counters
+\renewcommand{\labelenumi}{{\color{halfgray}(\alph{enumi})}}
+\renewcommand{\labelenumii}{\color{halfgray}{\roman{enumii}.}}
+\renewcommand{\labelitemi}{{\color{halfgray}-}}%\raisebox{0.3ex}{\tiny$\blacksquare$}}}
+
+\numberwithin{theorem}{chapter}
+\numberwithin{definition}{chapter}
+\numberwithin{algorithm}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+% Maths
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\numberwithin{equation}{chapter}
+\allowdisplaybreaks
+
+% Shaded boxes
+\usepackage{framed}
+\newenvironment{remark}[1]{%
+  \definecolor{shadecolor}{gray}{0.9}%
+  \begin{shaded}{\color{Maroon}\noindent\textsc{#1}}\\%
+}{%
+  \end{shaded}%
+}
+
+% Code snippets
+%\usepackage{color}
+
+\usepackage{color}
+\definecolor{rulecolor}{rgb}{0.80,0.80,0.80}
+\definecolor{bgcolor}{rgb}{1.0,1.0,1.0}
+%\newminted{python}{bgcolor=bgcolor}
+
+% Todo
+\newcommand{\todo}[1]{\textcolor{red}{[TODO] #1}}
+
+% PS pictures
+%\usepackage{pstricks,auto-pst-pdf}
 
 % For the images and graphics
 \usepackage{subfig} % For subfigures in floats
@@ -34,95 +75,36 @@
 \graphicspath{ {/Users/omojumiller/mycode/MachineLearningNanoDegree/Machine-Learning-Project/studentIntervention} } %Path to images
 
 
-% For cutesy tables
-\usepackage{multirow}
-\usepackage[table]{xcolor}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{booktabs} % To draw thick lines in table.
-\usepackage{tablefootnote} % To allow footnotes in table.
-\newcommand{\nextitem}{\par\hspace {\labelsep} \textendash \hspace {\labelsep}} % For list inside table cell
+% Landscape tables
+\usepackage{rotating}
 
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Checkmarks
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
-
- % For text right arrow in chapter 1
- \usepackage{textcomp}
- 
- % For highlighted paragraphs
-\usepackage{xcolor}
-\usepackage{tcolorbox}
-
-% For listing code
-
-% Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold 
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
-% Custom colors
-\usepackage{color}
-\definecolor{deepblue}{rgb}{0,0,0.5}
-\definecolor{deepred}{rgb}{0.6,0,0}
-\definecolor{deepgreen}{rgb}{0,0.5,0}
+% Wide tables
+\usepackage{ltablex}
 
 
-\usepackage{listings}
-
-
- % Python style for highlighting
-\newcommand\pythonstyle{\lstset{
-language=Python,
-basicstyle=\ttm,
-otherkeywords={self},             % Add keywords here
-keywordstyle=\ttb\color{deepblue},
-emph={MyClass,__init__},          % Custom highlighting
-emphstyle=\ttb\color{deepred},    % Custom highlighting style
-stringstyle=\color{deepgreen},
-frame=tb,                         % Any extra options here
-showstringspaces=false            % 
-}}
-
-
-% Python environment
-\lstnewenvironment{python}[1][]
-{
-    \pythonstyle
-    \lstset{#1}
-}
-{}
-
-% Python for external files
-\newcommand\pythonexternal[2][]{{
-\pythonstyle
-\lstinputlisting[#1]{#2}}}
-
-% Python for inline
-\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
-
-% vector
-\renewcommand{\vec}[1]{\mathbf{#1}}
-
-%----------------------------------------------------------------------------------------
-%  TITLE SECTION
-%----------------------------------------------------------------------------------------
-\title{\large \textbf{Building a Student Intervention System: An Udacity Nanodegree ML Project}} % using \large makes the title approximately 14 pt.
-% Author info isn't included for the Annual Conference but some regional conferences might request it.
-\author{Omoju Miller}
-%\author{\normalsize Author Name\\
-%\normalsize email@example.com\\
-%\normalsize Name of Your Department\\\
-%\normalsize Your Institution Name}
-\date{\today} % This leaves the date blank.
-
-\makeatletter % This gets the margins for the title set.
-\patchcmd{\@maketitle}{\begin{center}}{\begin{adjustwidth}{0.5in}{0.5in}\begin{center}}{}{}
-\patchcmd{\@maketitle}{\end{center}}{\end{center}\end{adjustwidth}}{}{}
-\makeatother
+% -----------------------------------------------------------------------------
 
 \begin{document}
-\raggedright
-\maketitle
-\thispagestyle{empty}
-\pagestyle{empty}
+\frenchspacing
+\raggedbottom
+\selectlanguage{american}
+\pagenumbering{roman}
+\pagestyle{plain}
+
+
+
+% Content =====================================================================
+\pagenumbering{arabic}
+
+\cleardoublepage
+
+\chapter *{Identify At Risk Students}
+
 
 
 
@@ -130,11 +112,11 @@ showstringspaces=false            %
 %  PAPER CONTENTS
 %----------------------------------------------------------------------------------------
 \section*{Introduction}
-Your goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?
+Building a Student Intervention System: An Udacity Nanodegree ML Project. The goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?
 
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize}% 
 \item 
-This task sounds like a problem that would be best suited for a classification algorithm. The inherent task is to develop learners that can "predicting a category." If we look at the problem from another perspective, we can consider the student data available as a ``labeled'' dataset. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\pythoninline{passed}' column as our class label. Therefore, this is a binary classification problem for predicting discrete labels that a student might belong to.
+This task sounds like a problem that would be best suited for a classification algorithm. The inherent task is to develop learners that can ``predicting a category.'' If we look at the problem from another perspective, we can consider the student data available as a ``labeled'' dataset. We have features that we can use to determine who has succeeded in the class versus who has not. For that insight, we could use `\texttt{passed}' column as our class label. Therefore, this is a binary classification problem for predicting discrete labels that a student might belong to.
 \end{itemize}
 
 \begin{figure}[!htbp]
@@ -148,7 +130,7 @@ This task sounds like a problem that would be best suited for a classification a
 
 \section*{Training and Evaluating Models}
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
-\begin{enumerate}[noitemsep,nolistsep]
+\begin{enumerate} 
 \item Decision Tree Classifier
 \item Random Forest Classifier
 \item Support Vector Machines
@@ -162,7 +144,7 @@ For the student intervention challenge, three supervised learning algorithms hav
 \begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\ 
 The theoretical time \& space complexity of decision trees classifiers as implemented in sci-kit learn package is:
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize} 
 \item Best Case: $\Theta(pN\log^2 N)$ 
 \item Worst Case: $O(pN^2\log N)$
 \item Average Case: $\Theta(pN\log^2 N)$
@@ -174,7 +156,7 @@ The decision tree algorithm is usually applied to classification and regression 
 What are its strengths and weaknesses?\\  
        \begin{itemize}
        \item Strengths of Decision Trees:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item Very intuitive. You can look at the results and understand it. 
                      \item Requires little data preparation. 
                      \item The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. In average case the cost of training $ O(pN\log^2 N)$.
@@ -182,7 +164,7 @@ What are its strengths and weaknesses?\\
                      \item Very robust. Performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
               \end{itemize}
        \item Weaknesses of Decision Trees:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item Decision-tree learners can create over-complex trees that do not generalize the data well. They are prone to over-fitting especially in the case of data with lots of features.
                      \item Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. 
                      \item The problem of learning an optimal decision tree is known to be NP-complete under several aspects of optimality and even for simple concepts. 
@@ -206,7 +188,7 @@ The \textit{major} reason why the decision tree classifier was selected was its 
 \begin{itemize} 
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
 The theoretical time \& space complexity for building a complete unpruned decision tree is:
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize} 
 \item Best Case: $\Theta(MK\widetilde{N}\log^2 \widetilde{N})$ 
 \item Worst Case: $O(MK\widetilde{N}^2\log \widetilde{N})$ 
 \item Average Case: $\Theta(MK\widetilde{N}\log^2 \widetilde{N})$
@@ -218,26 +200,26 @@ Where $M$ denotes number of randomized trees, $N$ the number of samples, and $K$
 Ensemble learners are used in supervised learning. They have multiple applications. They have been used in bioinformatics for example to classify micro-array data, they have been used in engineering to solve aircraft engine fault diagnosis, they have also been used for human pose detection in the Microsoft Kinect amongst other things. \\ 
 
 \item What are its strengths and weaknesses?\\
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize} 
        \item Strenghts of Random Forest Classifiers:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item Considered one of the best off-the-shelf learning algorithm, requires almost no tuning. 
                      \item Fast to train because algorithm lends itself well to parallelization.
                      \item Flexible, can be used with large number of attributes, small or large datasets.
                      \item Good control of bias and variance because of the averaging and randomization which leads to better performance.
               \end{itemize}
        \item Weaknesses of Random Forest Classifiers:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item Loss of interpretability as compared to decision trees.
               \end{itemize}
        \end{itemize}
 
 
 \item Given what you know about the data so far, why did you choose this model to apply?\\
-Based on the domain of the dataset, i.e., education and the task itself, identifying students that need intervention, I selected a Random Forest classifier as a potential model because they not only work well in discriminating the data, but these models also lend themselves well as a means of understanding variable importance, i.e., feature selection. Through feature selection, we can come to understand the variables that have the most impact in determining whether a student needs intervention or not.\\
-For example, I trained a Random Forest classifier on the student data, and used its `\pythoninline{feature_importances_}' function in SciKit learn to find the top 10 most important features in determining when a student needed intervention. Those features are listed below in order of importance : 
+Based on the domain of the dataset, i.e., education and the task itself, identifying students that need intervention, I selected a Random Forest classifier as a potential model because they not only work well in discriminating the data, but these models also lend themselves well as a means of understanding variable importance, i.e., feature selection. Through feature selection, we can come to understand the variables that have the most impact in determining whether a student needs intervention or not.
+For example, I trained a Random Forest classifier on the student data, and used its \texttt{feature\_importances\_} function in SciKit learn to find the top 10 most important features in determining when a student needed intervention. Those features are listed below in order of importance : 
 
-\begin{enumerate}[noitemsep,nolistsep]
+\begin{enumerate} 
  \item \textbf{absences} - number of school absences
  \item \textbf{age} - student's age 
  \item \textbf{failures} - number of past class failures
@@ -248,7 +230,7 @@ For example, I trained a Random Forest classifier on the student data, and used 
  \item \textbf{Fedu} - father's education
  \item \textbf{freetime} - free time after school
  \item \textbf{studytime} - weekly study time
- \end{enumerate}
+\end{enumerate}
 
 \end{itemize} 
 
@@ -260,7 +242,7 @@ For example, I trained a Random Forest classifier on the student data, and used 
 \begin{itemize}
 \item What is the theoretical $O(n)$ time \& space complexity in terms of input size?\\
 The theoretical time \& space complexity of SVMs is:
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize} 
 \item Best Case: $\Theta(pN^2)$ 
 \item Worst Case: $O(pN^3)$
 \item Average Case: $\Theta(pN^2)$
@@ -273,14 +255,14 @@ SVMs are an algorithm used for classification, regression and outlier detection.
 What are its strengths and weaknesses?
 \begin{itemize}
        \item Strenghts of SVMs:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item Versatile: utilizes \textbf{kernel} transformation and several functional forms so that what was once non-linearly separable now becomes linearly separable.
                      \item Effective in high dimensional spaces.
                      \item Still effective in cases where number of dimensions is greater than the number of samples.
                      \item Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
               \end{itemize}
        \item Weaknesses of SVMs:
-              \begin{itemize}[noitemsep,nolistsep]
+              \begin{itemize} 
                      \item If the number of features is much greater than the number of samples, the method is likely to give poor performance.
                      \item SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.
                      \item SVM is a binary classifier. To do a multi-class classification, only pair-wise classifications can be used (one class against all others, for all classes).
