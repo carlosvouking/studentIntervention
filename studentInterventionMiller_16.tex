@@ -90,20 +90,18 @@
 % -----------------------------------------------------------------------------
 
 \begin{document}
-\frenchspacing
 \raggedbottom
 \selectlanguage{american}
 \pagenumbering{roman}
 \pagestyle{plain}
 
+% Front pages =================================================================
+\include{titlepage}
 
 
 % Content =====================================================================
 \pagenumbering{arabic}
 
-\cleardoublepage
-
-\chapter *{Identify At Risk Students}
 
 
 
@@ -111,7 +109,7 @@
 %----------------------------------------------------------------------------------------
 %  PAPER CONTENTS
 %----------------------------------------------------------------------------------------
-\section*{Introduction}
+\chapter*{Introduction}
 Building a Student Intervention System: An Udacity Nanodegree ML Project. The goal is to identify students who might need early intervention - which type of supervised machine learning problem is this, classification or regression? Why?
 
 \begin{itemize}% 
@@ -128,7 +126,7 @@ This task sounds like a problem that would be best suited for a classification a
 \end{figure}
 
 
-\section*{Training and Evaluating Models}
+\chapter*{Training and Evaluating Models}
 For the student intervention challenge, three supervised learning algorithms have been selected as appropriate learners for the task. The algorithms are as follows:
 \begin{enumerate} 
 \item Decision Tree Classifier
@@ -283,7 +281,7 @@ One of the more interesting aspect of this dataset is that it is unbalanced. As 
 
 %----------------------------------------------------------------------------------------
 
-\section*{Choosing the Best Model}
+\chapter*{Choosing the Best Model}
 
 \paragraph{\textbf{Question}} Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?
 
